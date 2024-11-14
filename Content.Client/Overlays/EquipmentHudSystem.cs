@@ -14,6 +14,7 @@ public abstract class EquipmentHudSystem<T> : EntitySystem where T : IComponent
 {
     [Dependency] private readonly IPlayerManager _player = default!;
 
+    [ViewVariables]
     protected bool IsActive;
     protected virtual SlotFlags TargetSlots => ~SlotFlags.POCKET;
 
@@ -102,7 +103,7 @@ public abstract class EquipmentHudSystem<T> : EntitySystem where T : IComponent
         args.Components.Add(ent.Comp);
     }
 
-    protected void RefreshOverlay()
+    protected void RefreshOverlay(EntityUid uid)
     {
         if (_player.LocalSession?.AttachedEntity is not { } entity)
             return;
