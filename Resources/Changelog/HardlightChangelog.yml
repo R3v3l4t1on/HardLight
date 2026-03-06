@@ -1635,3 +1635,9 @@ Entries:
       message: Contraband detectors can now be constructed.
   id: 176
   time: '2026-03-06T06:38:14.0000000+00:00'
+- author: Sully669
+  changes:
+    - type: Fix
+      message: job role supervisors
+  id: 177
+  time: '2026-03-06T22:19:45.0000000+00:00'
