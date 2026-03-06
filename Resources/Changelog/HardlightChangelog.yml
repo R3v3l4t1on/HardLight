@@ -1621,3 +1621,11 @@ Entries:
       message: Eidolon Mercenary Airlock _(These weren't added by accident by Valor)_
   id: 174
   time: '2026-03-06T06:28:04.0000000+00:00'
+- author: Nikode16
+  changes:
+    - type: Fix
+      message: >-
+        Handheld Artifact Container now has AA instead of Sci & Cargo Access
+        akin to the Big Version
+  id: 175
+  time: '2026-03-06T06:31:12.0000000+00:00'
