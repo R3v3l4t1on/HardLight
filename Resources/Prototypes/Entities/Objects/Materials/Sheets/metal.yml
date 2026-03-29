@@ -17,6 +17,7 @@
     - Metal
     - NoPaint
     - TiderAnvilParts
+    - ConstructionMaterial # Wizden
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
