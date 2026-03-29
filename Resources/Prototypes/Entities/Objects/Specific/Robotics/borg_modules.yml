@@ -500,27 +500,28 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: inflatable-module }
 # Wizden end
 
-- type: entity
-  id: BorgModuleFireExtinguisher
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
-  # Wizden start
-  name: thruster cyborg module
-  description: NT assigned a team to design a jetpack for cyborg units, but they ran out of funding and just made a bigger fire extinguisher. It comes with a integrated GPS and mass scanner though!
-  components:
-  - type: Sprite
-    layers:
-    - state: generic
-    - state: icon-fire-extinguisher
-  - type: ItemBorgModule
-    hands:
-    - item: BorgFireExtinguisher
-    - item: BorgHandheldGPSBasic
-    - item: HandheldStationMapUnpowered
-    - item: HandHeldMassScannerBorg
-  # Wizden End
-  - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: extinguisher-module }
-
+# Hardlight start - The frontier module is straight up better than this.
+# - type: entity
+#   id: BorgModuleFireExtinguisher
+#   parent: [ BaseBorgModule, BaseProviderBorgModule ]
+#   # Wizden start
+#   name: thruster cyborg module
+#   description: NT assigned a team to design a jetpack for cyborg units, but they ran out of funding and just made a bigger fire extinguisher. It comes with a integrated GPS and mass scanner though!
+#   components:
+#   - type: Sprite
+#     layers:
+#     - state: generic
+#     - state: icon-fire-extinguisher
+#   - type: ItemBorgModule
+#     hands:
+#     - item: BorgFireExtinguisher
+#     - item: BorgHandheldGPSBasic
+#     - item: HandheldStationMapUnpowered
+#     - item: HandHeldMassScannerBorg
+#   # Wizden End
+#   - type: BorgModuleIcon
+#     icon: { sprite: Interface/Actions/actions_borg.rsi, state: extinguisher-module }
+# Hardlight end
 # Wizden start - this module was combined with the fire extinguisher module to create thruster module.
 # - type: entity
 #   id: BorgModuleGPS
@@ -662,7 +663,7 @@
 - type: entity
   id: BorgModuleTraversal
   parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
-  name: traversal cyborg module
+  name: advanced frontier cyborg module
   components:
   - type: Sprite
     layers:
@@ -671,10 +672,31 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponGrapplingGun
-    - item: BorgFireExtinguisher
+    - item: JetpackMiniFilled # Hardlight start
+      hand:
+        emptyRepresentative: JetpackMiniFilled
+        emptyLabel: borg-placeholder-display-name-jetpack
+        whitelist:
+          components:
+          - Jetpack
     - item: BorgHandheldGPSBasic
     - item: HandheldStationMapUnpowered # Hardlight
     - item: HandHeldMassScannerBorg
+    - item: BorgClock
+    # Hardlight start
+    - hand:
+      emptyRepresentative: SpaceCash1000
+      emptyLabel: borg-slot-money
+      whitelist:
+        components:
+        - Cash
+    - hand:
+      - emptyRepresentative: FuelPlasma
+      - emptyLabel: borg-slot-fuel-empty
+        whitelist:
+          components:
+          - NFFuel
+      # Hardlight end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: grappling-module }
 # Wizden end
@@ -752,6 +774,7 @@
           - GasTank
           - AmeFuelContainer
           - ReactorPart # FH edit
+          - NFFuel # Hardlight
     # Hardlight start
     - item: ConstructionBag
       hand:
