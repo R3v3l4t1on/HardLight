@@ -501,7 +501,6 @@ namespace Content.Server.Construction
                 if (senderSession is {} session) // Goobstation - not added for constructor
                     _beingBuilt[session].Remove(ack);
             }
-
             HandsComponent? hands = null; // Goobstation
             if (!_actionBlocker.CanInteract(user, null)
                 || (senderSession != null && EntityManager.TryGetComponent(user, out hands) && hands.ActiveHandEntity == null)) // Goobstation - dont check hands for constructor
