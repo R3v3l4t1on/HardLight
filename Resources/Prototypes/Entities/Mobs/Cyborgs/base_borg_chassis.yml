@@ -264,10 +264,10 @@
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
   #region Starlight
-  - type: CyborgSparkEffect
-  - type: StationAIShunt #Starlight allow shunting into all borgs
+  # - type: CyborgSparkEffect # Hardlight we don't have these yet...
+  # - type: StationAIShunt #Starlight allow shunting into all borgs # Hardlight TOO SOON
   - type: BorgSwitchableSubtype # Afterlight change
-  - type: Crawler
+  # - type: Crawler # Hardlight TOO SOON
   - type: PreventDropOnDowned # Frontier: borgs don't drop items when falling (e.g. critical/dead)
   - type: Blindable
   - type: EyeProtection
