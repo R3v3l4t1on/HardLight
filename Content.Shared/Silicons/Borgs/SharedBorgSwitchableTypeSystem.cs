@@ -22,7 +22,6 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
     [Dependency] protected readonly IPrototypeManager Prototypes = default!;
     [Dependency] private readonly InteractionPopupSystem _interactionPopup = default!;
-    [Dependency] private readonly ISharedPlayersRoleManager _playerRoles = default!; // Starlight-edit
 
     [ValidatePrototypeId<EntityPrototype>]
     public const string ActionId = "ActionSelectBorgType";
@@ -79,18 +78,19 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
 
         if (!Prototypes.HasIndex(args.Prototype))
             return;
-
+        // Hardlight start: We do not charge people for a god damn borg skin (leaving this here if someone wants to change it and make it work with HL economy)
         // Starlight-start: Handle subtype cost
-        if (TryComp<BorgSwitchableSubtypeComponent>(ent, out var subtypeComp) && subtypeComp.BorgSubtype != null
-            && Prototypes.Index(subtypeComp.BorgSubtype.Value).TryGetComponent<BorgSubtypeDefinitionComponent>(out var subtype) && subtype.Price is not null and > 0)
-        {
-            if (_playerRoles.GetPlayerData(ent.Owner) is not PlayerData playerData
-                || playerData.Balance < subtype.Price)
-                return;
+        // if (TryComp<BorgSwitchableSubtypeComponent>(ent, out var subtypeComp) && subtypeComp.BorgSubtype != null
+        //     && Prototypes.Index(subtypeComp.BorgSubtype.Value).TryGetComponent<BorgSubtypeDefinitionComponent>(out var subtype) && subtype.Price is not null and > 0)
+        // {
+        //     if (_playerRoles.GetPlayerData(ent.Owner) is not PlayerData playerData
+        //         || playerData.Balance < subtype.Price)
+        //         return;
 
-            playerData.Balance -= subtype.Price.Value;
-        }
+        //     playerData.Balance -= subtype.Price.Value;
+        // }
         // Starlight-end
+        // Hardlight end
 
         SelectBorgModule(ent, args.Prototype);
     }
