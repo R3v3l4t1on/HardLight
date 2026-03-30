@@ -62,7 +62,7 @@ public sealed class ClientClothingSystem : ClothingSystem
         base.Initialize();
 
         SubscribeLocalEvent<ClothingComponent, GetEquipmentVisualsEvent>(OnGetVisuals);
-
+        SubscribeLocalEvent<ClothingComponent, InventoryTemplateUpdated>(OnInventoryTemplateUpdated);
         SubscribeLocalEvent<InventoryComponent, VisualsChangedEvent>(OnVisualsChanged);
         SubscribeLocalEvent<SpriteComponent, DidUnequipEvent>(OnDidUnequip);
         SubscribeLocalEvent<InventoryComponent, AppearanceChangeEvent>(OnAppearanceUpdate);
@@ -73,6 +73,7 @@ public sealed class ClientClothingSystem : ClothingSystem
         // May need to update displacement maps if the sex changed. Also required to properly set the stencil on init
         if (args.Sprite == null)
             return;
+        UpdateAllSlots(uid, component);
 
         var enumerator = _inventorySystem.GetSlotEnumerator((uid, component));
         while (enumerator.NextItem(out var item, out var slot))
@@ -85,6 +86,23 @@ public sealed class ClientClothingSystem : ClothingSystem
         {
             DebugTools.Assert(!args.Sprite[layer].Visible);
             _sprite.LayerSetVisible((uid, args.Sprite), layer, false);
+        }
+    }
+
+    private void OnInventoryTemplateUpdated(Entity<ClothingComponent> ent, ref InventoryTemplateUpdated args)
+    {
+        UpdateAllSlots(ent.Owner, clothing: ent.Comp);
+    }
+
+    private void UpdateAllSlots(
+        EntityUid uid,
+        InventoryComponent? inventoryComponent = null,
+        ClothingComponent? clothing = null)
+    {
+        var enumerator = _inventorySystem.GetSlotEnumerator((uid, inventoryComponent));
+        while (enumerator.NextItem(out var item, out var slot))
+        {
+            RenderEquipment(uid, item, slot.Name, inventoryComponent, clothingComponent: clothing);
         }
     }
 

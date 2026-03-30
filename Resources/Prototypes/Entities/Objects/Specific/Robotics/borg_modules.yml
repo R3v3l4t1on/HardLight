@@ -661,9 +661,9 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-mining-module }
 
 - type: entity
-  id: BorgModuleTraversal
+  id: BorgModuleAdvancedFrontier # Hardlight
   parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
-  name: advanced frontier cyborg module
+  name: advanced frontier cyborg module # Hardlight
   components:
   - type: Sprite
     layers:
