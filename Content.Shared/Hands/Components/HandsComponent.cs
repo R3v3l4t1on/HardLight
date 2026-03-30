@@ -16,13 +16,7 @@ public sealed partial class HandsComponent : Component
     ///     The currently active hand.
     /// </summary>
     [ViewVariables]
-    public Hand? ActiveHand;
-
-    /// <summary>
-    ///     The item currently held in the active hand.
-    /// </summary>
-    [ViewVariables]
-    public EntityUid? ActiveHandEntity => ActiveHand?.HeldEntity;
+    public string? ActiveHandId;
 
     [ViewVariables]
     public Dictionary<string, Hand> Hands = new();
@@ -38,7 +32,7 @@ public sealed partial class HandsComponent : Component
     ///     If true, the items in the hands won't be affected by explosions.
     /// </summary>
     [DataField]
-    public bool DisableExplosionRecursion = false;
+    public bool DisableExplosionRecursion;
 
     /// <summary>
     ///     Modifies the speed at which items are thrown.
@@ -106,11 +100,8 @@ public sealed partial class HandsComponent : Component
 }
 
 [Serializable, NetSerializable]
-public sealed class Hand //TODO: This should definitely be a struct - Jezi
+public partial record struct Hand //TODO: This should definitely be a struct - Jezi
 {
-    [ViewVariables]
-    public string Name { get; }
-
     [DataField]
     public HandLocation Location = HandLocation.Middle;
 
@@ -138,90 +129,43 @@ public sealed class Hand //TODO: This should definitely be a struct - Jezi
     /// </summary>
     [DataField]
     public EntityWhitelist? Blacklist;
-    /// <summary>
-    ///     The container used to hold the contents of this hand. Nullable because the client must get the containers via <see cref="ContainerManagerComponent"/>,
-    ///     which may not be synced with the server when the client hands are created.
-    /// </summary>
-    [ViewVariables, NonSerialized]
-    public ContainerSlot? Container;
-
-    [ViewVariables]
-    public EntityUid? HeldEntity => Container?.ContainedEntity;
-
-    public bool IsEmpty => HeldEntity == null;
     public Hand()
     {
 
     }
 
-    public Hand(string name, HandLocation location, LocId? emptyLabel = null, EntProtoId? emptyRepresentative = null, EntityWhitelist? whitelist = null, EntityWhitelist? blacklist = null, ContainerSlot? container = null)
+    public Hand( HandLocation location, LocId? emptyLabel = null, EntProtoId? emptyRepresentative = null, EntityWhitelist? whitelist = null, EntityWhitelist? blacklist = null)
     {
-        Name = name;
         Location = location;
         EmptyLabel = emptyLabel;
         EmptyRepresentative = emptyRepresentative;
         Whitelist = whitelist;
         Blacklist = blacklist;
-        Container = container;
     }
 }
 
 [Serializable, NetSerializable]
 public sealed class HandsComponentState : ComponentState
 {
-    public readonly List<Hand> Hands;
-    public readonly List<string> HandNames;
-    public readonly string? ActiveHand;
+    public readonly Dictionary<string, Hand> Hands;
+    public readonly List<string> SortedHands;
+    public readonly string? ActiveHandId;
 
     public HandsComponentState(HandsComponent handComp)
     {
         // cloning lists because of test networking.
-        Hands = new(handComp.Hands.Values);
+        Hands = new(handComp.Hands);
         HandNames = new(handComp.SortedHands);
-        ActiveHand = handComp.ActiveHand?.Name;
+        ActiveHand = handComp.ActiveHandId;
     }
 }
 
 /// <summary>
 ///     What side of the body this hand is on.
 /// </summary>
-/// <seealso cref="HandUILocation"/>
-/// <seealso cref="HandLocationExt"/>
 public enum HandLocation : byte
 {
     Left,
     Middle,
     Right
-}
-
-/// <summary>
-/// What side of the UI a hand is on.
-/// </summary>
-/// <seealso cref="HandLocationExt"/>
-/// <seealso cref="HandLocation"/>
-public enum HandUILocation : byte
-{
-    Left,
-    Right
-}
-
-/// <summary>
-/// Helper functions for working with <see cref="HandLocation"/>.
-/// </summary>
-public static class HandLocationExt
-{
-    /// <summary>
-    /// Convert a <see cref="HandLocation"/> into the appropriate <see cref="HandUILocation"/>.
-    /// This maps "middle" hands to <see cref="HandUILocation.Right"/>.
-    /// </summary>
-    public static HandUILocation GetUILocation(this HandLocation location)
-    {
-        return location switch
-        {
-            HandLocation.Left => HandUILocation.Left,
-            HandLocation.Middle => HandUILocation.Right,
-            HandLocation.Right => HandUILocation.Right,
-            _ => throw new ArgumentOutOfRangeException(nameof(location), location, null)
-        };
-    }
 }

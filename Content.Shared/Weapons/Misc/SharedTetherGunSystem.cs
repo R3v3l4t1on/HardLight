@@ -139,14 +139,14 @@ public abstract partial class SharedTetherGunSystem : EntitySystem
         gunUid = null;
         gun = null;
 
-        if (!TryComp<HandsComponent>(user, out var hands) ||
-            !TryComp(hands.ActiveHandEntity, out gun) ||
+        if (!_hands.TryGetActiveItem(user, out var activeItem) ||
+            !TryComp(activeItem, out gun) ||
             _container.IsEntityInContainer(user))
         {
             return false;
         }
 
-        gunUid = hands.ActiveHandEntity.Value;
+        gunUid = activeItem.Value;
         return true;
     }
 

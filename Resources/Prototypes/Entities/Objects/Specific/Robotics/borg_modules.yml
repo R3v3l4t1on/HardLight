@@ -821,9 +821,8 @@
     - state: xenoborg_engi
     - state: icon-rcd
   - type: ItemBorgModule
-    moduleId: XenoRCD # Frontier
-    items:
-    - RCDXeno
+    hands:
+    - item: RCDXeno
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: rcd-module }
 
