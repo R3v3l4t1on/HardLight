@@ -349,7 +349,6 @@
       spriteBodyState: maximillion
       spriteHasMindState: maximillion_e
       spriteNoMindState: maximillion_e_r
-      price: 500
 
 - type: entity
   parent: BorgServiceSubtypeBase
