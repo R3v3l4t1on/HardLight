@@ -33,10 +33,10 @@ public sealed partial class InventoryComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<string, DisplacementData> MaleDisplacements = new();
-
-    /// <summary>
-    /// Raised if the <see cref="InventoryComponent.TemplateId"/> of an inventory changed.
-    /// </summary>
-    [ByRefEvent]
-    public struct InventoryTemplateUpdated;
 }
+
+/// <summary>
+/// Raised if the <see cref="InventoryComponent.TemplateId"/> of an inventory changed.
+/// </summary>
+[ByRefEvent]
+public struct InventoryTemplateUpdated;
