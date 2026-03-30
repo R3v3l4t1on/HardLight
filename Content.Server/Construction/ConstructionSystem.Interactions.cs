@@ -274,6 +274,10 @@ namespace Content.Server.Construction
                     if(!insertStep.EntityValid(insert, EntityManager, _factory))
                         return HandleResult.False;
 
+                    // Unremovable items can't be inserted
+                    if(HasComp<UnremoveableComponent>(insert))
+                        return HandleResult.False;
+
                     // If we're only testing whether this step would be handled by the given event, then we're done.
                     if (validation)
                         return HandleResult.Validated;

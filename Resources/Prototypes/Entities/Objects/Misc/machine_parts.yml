@@ -9,6 +9,9 @@
       sprite: _NF/Objects/Misc/stock_parts.rsi # Frontier
     - type: Item
       size: Tiny
+    - type: Tag
+      tags:
+      - ConstructionMaterial
     - type: GuideHelp
       guides:
       - MachineUpgrading

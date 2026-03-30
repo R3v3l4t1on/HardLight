@@ -1,7 +1,9 @@
 using Content.Shared.DisplacementMap;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Containers;
+using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Hands.Components;
@@ -109,9 +111,33 @@ public sealed class Hand //TODO: This should definitely be a struct - Jezi
     [ViewVariables]
     public string Name { get; }
 
-    [ViewVariables]
-    public HandLocation Location { get; }
+    [DataField]
+    public HandLocation Location = HandLocation.Middle;
 
+    /// <summary>
+    /// The label to be displayed for this hand when it does not contain an entity
+    /// </summary>
+    [DataField]
+    public LocId? EmptyLabel;
+
+    /// <summary>
+    /// The prototype ID of a "representative" entity prototype for what this hand could hold, used in the UI.
+    /// It is not map-initted.
+    /// </summary>
+    [DataField]
+    public EntProtoId? EmptyRepresentative;
+
+    /// <summary>
+    /// What this hand is allowed to hold
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? Whitelist;
+
+    /// <summary>
+    /// What this hand is not allowed to hold
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? Blacklist;
     /// <summary>
     ///     The container used to hold the contents of this hand. Nullable because the client must get the containers via <see cref="ContainerManagerComponent"/>,
     ///     which may not be synced with the server when the client hands are created.
@@ -123,11 +149,19 @@ public sealed class Hand //TODO: This should definitely be a struct - Jezi
     public EntityUid? HeldEntity => Container?.ContainedEntity;
 
     public bool IsEmpty => HeldEntity == null;
+    public Hand()
+    {
 
-    public Hand(string name, HandLocation location, ContainerSlot? container = null)
+    }
+
+    public Hand(string name, HandLocation location, LocId? emptyLabel = null, EntProtoId? emptyRepresentative = null, EntityWhitelist? whitelist = null, EntityWhitelist? blacklist = null, ContainerSlot? container = null)
     {
         Name = name;
         Location = location;
+        EmptyLabel = emptyLabel;
+        EmptyRepresentative = emptyRepresentative;
+        Whitelist = whitelist;
+        Blacklist = blacklist;
         Container = container;
     }
 }

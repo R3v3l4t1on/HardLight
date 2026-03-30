@@ -131,6 +131,10 @@
             params:
               volume: 1.0
               variation: 0.125
+  - type: Tag
+    tags:
+    - Sheet
+    - ConstructionMaterial
   # FH End - Protogen Healing
 
 - type: entity
@@ -166,6 +170,7 @@
     - Sheet
     - NoPaint
     - TiderAnvilParts
+    - ConstructionMaterial # Wizden
   - type: Material
   - type: PhysicalComposition
     materialComposition:

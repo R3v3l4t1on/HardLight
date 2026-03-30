@@ -6,6 +6,7 @@ using Content.Client.UserInterface.Systems.Hotbar.Widgets;
 using Content.Shared.Hands.Components;
 using Content.Shared.Item; // HardLight
 using Content.Shared.Input;
+using Robust.Shared.Prototypes;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Timing;
 using Content.Shared._HL.Traits.Physical; // HardLight
@@ -74,9 +75,12 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         _handsSystem.OnPlayerHandUnblocked -= HandUnblocked;
     }
 
-    private void OnAddHand(string name, HandLocation location)
+    private void OnAddHand(Entity<HandsComponent> entity, string name, HandLocation location)
     {
-        AddHand(name, location);
+        if (entity.Owner != _player.LocalEntity)
+            return;
+        if (_handsSystem.TryGetHand((entity.Owner, entity.Comp), name, out var hand))
+            AddHand(name, hand.Value);
     }
 
     private void HandPressed(GUIBoundKeyEventArgs args, SlotControl hand)
@@ -139,23 +143,30 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         _playerHandsComponent = handsComp;
         foreach (var (name, hand) in handsComp.Hands)
         {
-            var handButton = AddHand(name, hand.Location);
+            var handButton = AddHand(name, hand);
 
             if (_entities.TryGetComponent(hand.HeldEntity, out VirtualItemComponent? virt))
             {
                 handButton.SetEntity(virt.BlockingEntity);
                 handButton.Blocked = true;
             }
-            // Frontier - borg hand placeholder
-            else if (_entities.TryGetComponent(hand.HeldEntity, out HandPlaceholderVisualsComponent? placeholder))
+            else if (held != null)
             {
-                handButton.SetEntity(placeholder.Dummy);
-                handButton.Blocked = true;
+                handButton.SetEntity(hand);
+                handButton.Blocked = false;
             }
-            // End Frontier - borg hand placeholder
             else
             {
-                handButton.SetEntity(hand.HeldEntity);
+                if (hand.EmptyRepresentative is { } representative)
+                {
+                    // placeholder, view it
+                    SetRepresentative(handButton, representative);
+                }
+                else
+                {
+                    // otherwise empty
+                    handButton.SetEntity(null);
+                }
                 handButton.Blocked = false;
             }
         }
@@ -166,6 +177,11 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         SetActiveHand(activeHand.Name);
 
         ReconcileTinyDerivedBlockedHands(); // HardLight
+    }
+
+    private void SetRepresentative(HandButton handButton, EntProtoId prototype)
+    {
+        handButton.SetPrototype(prototype, true);
     }
 
     private void HandBlocked(string handName)
@@ -206,20 +222,17 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
             hand.SetEntity(virt.BlockingEntity);
             hand.Blocked = true;
         }
-        // Frontier: borg hand placeholders
-        else if (_entities.TryGetComponent(entity, out HandPlaceholderVisualsComponent? placeholder))
-        {
-            hand.SetEntity(placeholder.Dummy);
-            hand.Blocked = true;
-        }
-        // End Frontier: borg hand placeholders
         else
         {
             hand.SetEntity(entity);
             hand.Blocked = false;
         }
-
-        UpdateHandStatus(hand, entity);
+        if (_playerHandsComponent != null &&
+                    _player.LocalSession?.AttachedEntity is { } playerEntity &&
+                    _handsSystem.TryGetHand((playerEntity, _playerHandsComponent), name, out var handData))
+        {
+            UpdateHandStatus(hand, entity, handData);
+        }
         ReconcileTinyDerivedBlockedHands(); // HardLight
     }
 
@@ -231,9 +244,19 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
 
         hand.SetEntity(null);
         hand.Blocked = false; // HardLight
-        UpdateHandStatus(hand, null); // HardLight
 
         ReconcileTinyDerivedBlockedHands(); // HardLight
+        if (_playerHandsComponent != null &&
+            _player.LocalSession?.AttachedEntity is { } playerEntity &&
+            _handsSystem.TryGetHand((playerEntity, _playerHandsComponent), name, out var handData))
+        {
+            UpdateHandStatus(hand, null, handData);
+            if (handData?.EmptyRepresentative is { } representative)
+            {
+                SetRepresentative(hand, representative);
+                return;
+            }
+        }
     }
 
     // HardLight start
@@ -384,13 +407,13 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
             if (foldedLocation == HandUILocation.Left)
             {
                 _statusHandLeft = handControl;
-                HandsGui.UpdatePanelEntityLeft(hand.HeldEntity);
+                HandsGui.UpdatePanelEntityLeft(heldEnt, hand.Value);
             }
             else
             {
                 // Middle or right
                 _statusHandRight = handControl;
-                HandsGui.UpdatePanelEntityRight(hand.HeldEntity);
+                HandsGui.UpdatePanelEntityRight(heldEnt, hand.Value);
             }
 
             HandsGui.SetHighlightHand(foldedLocation);
@@ -403,9 +426,9 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         return handControl;
     }
 
-    private HandButton AddHand(string handName, HandLocation location)
+    private HandButton AddHand(string handName, Hand hand)
     {
-        var button = new HandButton(handName, location);
+        var button = new HandButton(handName, hand.location);
         button.StoragePressed += StorageActivate;
         button.Pressed += HandPressed;
 
@@ -421,10 +444,16 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
             GetFirstAvailableContainer().AddButton(button);
         }
 
+        if (hand.EmptyRepresentative is { } representative)
+        {
+            SetRepresentative(button, representative);
+        }
+        UpdateHandStatus(button, null, hand);
+
         // If we don't have a status for this hand type yet, set it.
         // This means we have status filled by default in most scenarios,
         // otherwise the user'd need to switch hands to "activate" the hands the first time.
-        if (location.GetUILocation() == HandUILocation.Left)
+        if (hand.location.GetUILocation() == HandUILocation.Left)
             _statusHandLeft ??= button;
         else
             _statusHandRight ??= button;
@@ -587,12 +616,12 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
         }
     }
 
-    private void UpdateHandStatus(HandButton hand, EntityUid? entity)
+    private void UpdateHandStatus(HandButton hand, EntityUid? entity, Hand? handData)
     {
         if (hand == _statusHandLeft)
-            HandsGui?.UpdatePanelEntityLeft(entity);
+            HandsGui?.UpdatePanelEntityLeft(entity, handData);
 
         if (hand == _statusHandRight)
-            HandsGui?.UpdatePanelEntityRight(entity);
+            HandsGui?.UpdatePanelEntityRight(entity, handData);
     }
 }

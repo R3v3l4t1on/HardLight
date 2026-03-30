@@ -31,6 +31,12 @@ public sealed partial class MachineBoardComponent : Component
     public Dictionary<ProtoId<TagPrototype>, GenericPartInfo> TagRequirements = new();
 
     /// <summary>
+    /// Marker component for any item that's machine board-like without necessarily being a MachineBoardComponent
+    /// </summary>
+    [RegisterComponent, NetworkedComponent]
+    public sealed partial class CircuitboardComponent : Component;
+
+    /// <summary>
     /// Entities needed to construct this machine, discriminated by component.
     /// </summary>
     [DataField]

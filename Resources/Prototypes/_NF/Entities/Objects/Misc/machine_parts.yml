@@ -16,6 +16,9 @@
       rating: 2
     - type: Stack
       stackType: AdvancedCapacitor
+    - type: Tag # Hardlight
+      tags:
+      - ConstructionMaterial
 
 - type: entity
   id: NanoManipulatorStockPart
@@ -31,6 +34,9 @@
       rating: 2
     - type: Stack
       stackType: AdvancedManipulator
+    - type: Tag # Hardlight
+      tags:
+      - ConstructionMaterial
 
 - type: entity
   id: AdvancedMatterBinStockPart
@@ -46,6 +52,9 @@
       rating: 2
     - type: Stack
       stackType: AdvancedMatterBin
+    - type: Tag # Hardlight
+      tags:
+      - ConstructionMaterial
 
 # Rating 3
 
@@ -63,6 +72,9 @@
       rating: 3
     - type: Stack
       stackType: SuperCapacitor
+    - type: Tag # Hardlight
+      tags:
+      - ConstructionMaterial
 
 - type: entity
   id: PicoManipulatorStockPart
@@ -78,6 +90,9 @@
       rating: 3
     - type: Stack
       stackType: SuperManipulator
+    - type: Tag # Hardlight
+      tags:
+      - ConstructionMaterial
 
 - type: entity
   id: SuperMatterBinStockPart
@@ -93,6 +108,9 @@
       rating: 3
     - type: Stack
       stackType: SuperMatterBin
+    - type: Tag # Hardlight
+      tags:
+      - ConstructionMaterial
 
 # Rating 4
 
@@ -110,6 +128,9 @@
       rating: 4
     - type: Stack
       stackType: BluespaceCapacitor
+    - type: Tag # Hardlight
+      tags:
+      - ConstructionMaterial
 
 - type: entity
   id: FemtoManipulatorStockPart
@@ -125,6 +146,9 @@
       rating: 4
     - type: Stack
       stackType: BluespaceManipulator
+    - type: Tag # Hardlight
+      tags:
+      - ConstructionMaterial
 
 - type: entity
   id: BluespaceMatterBinStockPart
@@ -140,6 +164,9 @@
       rating: 4
     - type: Stack
       stackType: BluespaceMatterBin
+    - type: Tag # Hardlight
+      tags:
+      - ConstructionMaterial
 
 # Subspace stock parts (REMOVE THESE)
 

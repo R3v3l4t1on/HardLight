@@ -7,8 +7,10 @@ using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Network;
 
 namespace Content.Shared.Hands.EntitySystems;
@@ -24,6 +26,7 @@ public abstract partial class SharedHandsSystem
     [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualSystem = default!;
+    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
 
     protected event Action<Entity<HandsComponent>?>? OnHandSetActive;
 
@@ -43,7 +46,7 @@ public abstract partial class SharedHandsSystem
         CommandBinds.Unregister<SharedHandsSystem>();
     }
 
-    public virtual void AddHand(EntityUid uid, string handName, HandLocation handLocation, HandsComponent? handsComp = null)
+    public virtual void AddHand(EntityUid uid, string handName, HandLocation handLocation, LocId? emptyLabel = null, EntProtoId? emptyRepresentative = null, EntityWhitelist? whitelist = null, EntityWhitelist? blacklist = null, HandsComponent? handsComp = null)
     {
         if (!Resolve(uid, ref handsComp, false))
             return;
@@ -54,7 +57,7 @@ public abstract partial class SharedHandsSystem
         var container = ContainerSystem.EnsureContainer<ContainerSlot>(uid, handName);
         container.OccludesLight = false;
 
-        var newHand = new Hand(handName, handLocation, container);
+        var newHand = new Hand(handName, handLocation, emptyLabel, emptyRepresentative, whitelist, blacklist, container);
         handsComp.Hands.Add(handName, newHand);
         AddToSortedHands(handsComp, handName, handLocation); // Shitmed Change
 
