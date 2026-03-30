@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Client.Gameplay;
+using Content.Client.Hands.Systems;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
 using Content.Shared.RCD.Components;
