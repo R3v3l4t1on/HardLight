@@ -139,6 +139,11 @@ public abstract partial class InteractionTest
     prototype: Aghost
   - type: DoAfter
   - type: Hands
+    hands:
+      hand_right: # only one hand, so that they do not accidentally pick up deconstruction products
+        location: Right
+    sortedHands:
+    - hand_right
   - type: ComplexInteraction
   - type: MindContainer
   - type: Stripping
@@ -228,20 +233,6 @@ public abstract partial class InteractionTest
         {
             if (old != null)
                 SEntMan.DeleteEntity(old.Value);
-        });
-
-        // Ensure that the player only has one hand, so that they do not accidentally pick up deconstruction products
-        await Server.WaitPost(() =>
-        {
-            // I lost an hour of my life trying to track down how the hell interaction tests were breaking
-            // so greatz to this. Just make your own body prototype!
-            var bodySystem = SEntMan.System<BodySystem>();
-            var hands = bodySystem.GetBodyChildrenOfType(SEntMan.GetEntity(Player), BodyPartType.Hand).ToArray();
-
-            for (var i = 1; i < hands.Length; i++)
-            {
-                SEntMan.DeleteEntity(hands[i].Id);
-            }
         });
 
         // Change UI state to in-game.
