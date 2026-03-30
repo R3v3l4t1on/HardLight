@@ -2,7 +2,7 @@
 
 - type: entity
   id: LeftLegBorgSecurity
-  parent: BaseBorgLegLeft
+  parent: LeftLegBorg
   components:
   - type: Sprite
     state: borg_l_leg
@@ -16,7 +16,7 @@
 
 - type: entity
   id: RightLegBorgSecurity
-  parent: BaseBorgLegRight
+  parent: RightLegBorg
   components:
   - type: Sprite
     state: borg_r_leg
@@ -30,7 +30,7 @@
 
 - type: entity
   id: HeadBorgSecurity
-  parent: BaseBorgHead
+  parent: LightHeadBorg
   components:
   - type: Sprite
     state: borg_head
@@ -43,7 +43,7 @@
     - BorgSecurityHead
 
 - type: entity
-  id: TorsoBorgSecurity
+  id: TorsoBorg
   parent: BaseBorgTorso
   components:
   - type: Sprite
