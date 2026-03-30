@@ -43,8 +43,8 @@
     - BorgSecurityHead
 
 - type: entity
-  id: TorsoBorg
-  parent: BaseBorgTorso
+  id: TorsoBorgSecurity
+  parent: TorsoBorg
   components:
   - type: Sprite
     state: borg_chest
