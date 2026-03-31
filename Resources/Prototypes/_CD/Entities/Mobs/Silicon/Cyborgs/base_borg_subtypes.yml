@@ -1,71 +1,57 @@
-# use these base subtypes to avoid some boilerplate
-
-- type: entity
+# Hardlight - cleaned up the protos to use a generic base
+- type: borgSubtype
   abstract: true
   id: BorgSubtypeBase
   name: borg subtype base
-  description: Default state for other subtypes to use. 
-  components:
-    - type: BorgSubtypeDefinition
-      # Visuals
-      layerData:
-        - state: borg
-          map: [ "enum.BorgVisualLayers.Body", "movement" ]
-        - state: borg_e
-          map: [ "enum.BorgVisualLayers.Light" ]
-          shader: unshaded
-          visible: false
-        - state: borg_l
-          shader: unshaded
-          map: [ "light","enum.BorgVisualLayers.LightStatus" ]
-          visible: false
+  description: Default state for other subtypes to use.
+  # Visuals
+  layerData:
+    - state: borg
+      map: [ "enum.BorgVisualLayers.Body", "movement" ]
+    - state: borg_e
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
 
-      spriteBodyState: borg
-      spriteHasMindState: borg_e
-      # if rsi has a specific no mind state sprite, use that instead (i.e. borg_e_r)
-      spriteNoMindState: borg_e
+  spriteBodyState: borg
+  spriteHasMindState: borg_e
+  # if rsi has a specific no mind state sprite, use that instead (i.e. borg_e_r)
+  spriteNoMindState: borg_e
 
-      footstepCollection:
-        collection: FootstepBorg
+  footstepCollection:
+    collection: FootstepBorg
 
 # generic
-- type: entity
+- type: borgSubtype
   parent: BorgSubtypeBase
   abstract: true
   id: BorgGenericSubtypeBase
   name: borg generic subtype
-  components:
-    - type: BorgSubtypeDefinition
-      parentType: generic
-
-      dummyPrototype: BorgChassisGeneric
+  parentType: generic
+  dummyPrototype: BorgChassisGeneric
 
 
 # mining (salvage)
-- type: entity
+- type: borgSubtype
   parent: BorgSubtypeBase
   abstract: true
   id: BorgMiningSubtypeBase
   name: borg mining subtype
-  components:
-    - type: BorgSubtypeDefinition
-      parentType: mining
-
-      # Entity prototype for preview in selection menu
-      dummyPrototype: BorgChassisMining
+  parentType: mining
+  dummyPrototype: BorgChassisMining
 
 # engineering
-- type: entity
+- type: borgSubtype
   parent: BorgSubtypeBase
   abstract: true
   id: BorgEngineerSubtypeBase
   name: borg engineering subtype
-  components:
-    - type: BorgSubtypeDefinition
-      parentType: engineering
-
-      # Entity prototype for preview in selection menu
-      dummyPrototype: BorgChassisEngineer
+  parentType: engineering
+  dummyPrototype: BorgChassisEngineer
 
 # janitor
 - type: entity
@@ -73,12 +59,8 @@
   abstract: true
   id: BorgJanitorSubtypeBase
   name: borg janitor subtype
-  components:
-    - type: BorgSubtypeDefinition
-      parentType: janitor
-
-      # Entity prototype for preview in selection menu
-      dummyPrototype: BorgChassisJanitor
+  parentType: janitor
+  dummyPrototype: BorgChassisJanitor
 
 # medical
 - type: entity
@@ -86,12 +68,8 @@
   abstract: true
   id: BorgMedicalSubtypeBase
   name: borg medical subtype
-  components:
-    - type: BorgSubtypeDefinition
-      parentType: medical
-
-      # Description
-      dummyPrototype: BorgChassisMedical
+  parentType: medical
+  dummyPrototype: BorgChassisMedical
 
 # service
 - type: entity
@@ -99,14 +77,5 @@
   abstract: true
   id: BorgServiceSubtypeBase
   name: borg service subtype
-  components:
-    - type: BorgSubtypeDefinition
-      parentType: service
-
-      # Description
-      dummyPrototype: BorgChassisService
-
-- type: entityCategory
-  id: BorgSubtype
-  name: al-borg-subtypes
-  hideSpawnMenu: true
+  parentType: service
+  dummyPrototype: BorgChassisService

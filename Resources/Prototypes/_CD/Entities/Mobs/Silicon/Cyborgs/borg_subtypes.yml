@@ -1,6 +1,6 @@
 # mining
 - type: borgSubtype
-  parent: baseMiningSubtype
+  parent: BorgMiningSubtypeBase
   id: spidermin
 
   dummyPrototype: BorgChassisSpidermin
@@ -13,7 +13,7 @@
 
 # medical
 - type: borgSubtype
-  parent: baseMedicalSubtype
+  parent: BorgMedicalSubtypeBase
   id: qualified-doctor
 
   dummyPrototype: BorgChassisQualifiedDoctor
