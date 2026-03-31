@@ -4,51 +4,31 @@
   parent: BorgEngineerSubtypeBase
   id: BorgEngineerSubtypeStandard
   name: Standard # ITS ISNT A TYPO ITS STANDARD INSTEAD OF STANDART
-  spritePath: Mobs/Silicon/Chassis/engineer.rsi
-  spriteBodyState: standard
-  spriteHasMindState: standard_e
-  spriteNoMindState: standard_e_r
-  spriteToggleLightState: standard_l
+  spritePath: Mobs/Silicon/Chassis/engineering/standard.rsi
 
 - type: borgSubtype
   parent: BorgEngineerSubtypeBase
   id: BorgEngineerSubtypeGeneric
   name: Generic
-  spritePath: Mobs/Silicon/Chassis/engineer.rsi
-  spriteBodyState: generic
-  spriteHasMindState: generic_e
-  spriteNoMindState: generic_e_r
-  spriteToggleLightState: generic_l
+  spritePath: Mobs/Silicon/Chassis/engineering/generic.rsi
 
 - type: borgSubtype
   parent: BorgEngineerSubtypeBase
   id: BorgEngineerSubtypeAntique
   name: Antique
-  spritePath: Mobs/Silicon/Chassis/engineer.rsi
-  spriteBodyState: antique
-  spriteHasMindState: antique_e
-  spriteNoMindState: antique_e_r
-  spriteToggleLightState: antique_l
+  spritePath: Mobs/Silicon/Chassis/engineering/antique.rsi
 
 - type: borgSubtype
   parent: BorgEngineerSubtypeBase
   id: BorgEngineerSubtypeNoble
   name: Noble-ENG
-  spritePath: Mobs/Silicon/Chassis/engineer.rsi
-  spriteBodyState: noble
-  spriteHasMindState: noble_e
-  spriteNoMindState: noble_e_r
-  spriteToggleLightState: noble_l
+  spritePath: Mobs/Silicon/Chassis/engineering/noble.rsi
 
 - type: borgSubtype
   parent: BorgEngineerSubtypeBase
   id: BorgEngineerSubtypeCricket
   name: Cricket
-  spritePath: Mobs/Silicon/Chassis/engineer.rsi
-  spriteBodyState: cricket
-  spriteHasMindState: cricket_e
-  spriteNoMindState: cricket_e_r
-  spriteToggleLightState: cricket_l
+  spritePath: Mobs/Silicon/Chassis/engineering/cricket.rsi
 
 # region Generic
 
@@ -56,31 +36,19 @@
   parent: BorgGenericSubtypeBase
   id: BorgGenericSubtypeGeneric
   name: Generic
-  spritePath: Mobs/Silicon/Chassis/generic.rsi
-  spriteBodyState: generic
-  spriteHasMindState: generic_e
-  spriteNoMindState: generic_e_r
-  spriteToggleLightState: generic_l
+  spritePath: Mobs/Silicon/Chassis/generic/generic.rsi
 
 - type: borgSubtype
   parent: BorgGenericSubtypeBase
   id: BorgGenericSubtypeDroid
   name: Android
-  spritePath: Mobs/Silicon/Chassis/generic.rsi
-  spriteBodyState: droid
-  spriteHasMindState: droid_e
-  spriteNoMindState: droid_e_r
-  spriteToggleLightState: droid_l
+  spritePath: Mobs/Silicon/Chassis/generic/droid.rsi
 
 - type: borgSubtype
   parent: BorgGenericSubtypeBase
   id: BorgGenericSubtypeNoble
   name: Noble-STD
-  spritePath: Mobs/Silicon/Chassis/generic.rsi
-  spriteBodyState: noble
-  spriteHasMindState: noble_e
-  spriteNoMindState: noble_e_r
-  spriteToggleLightState: noble_l
+  spritePath: Mobs/Silicon/Chassis/generic/noble.rsi
 
 # region Janitor
 
@@ -88,51 +56,31 @@
   parent: BorgJanitorSubtypeBase
   id: BorgJanitorSubtypeStandard
   name: Standard # ITS ISNT A TYPO ITS STANDARD INSTEAD OF STANDART
-  spritePath: Mobs/Silicon/Chassis/janitor.rsi
-  spriteBodyState: standard
-  spriteHasMindState: standard_e
-  spriteNoMindState: standard_e_r
-  spriteToggleLightState: standard_l
+  spritePath: Mobs/Silicon/Chassis/janitor/standard.rsi
 
 - type: borgSubtype
   parent: BorgJanitorSubtypeBase
   id: BorgJanitorSubtypeGeneric
   name: Generic
-  spritePath: Mobs/Silicon/Chassis/janitor.rsi
-  spriteBodyState: generic
-  spriteHasMindState: generic_e
-  spriteNoMindState: generic_e_r
-  spriteToggleLightState: generic_l
+  spritePath: Mobs/Silicon/Chassis/janitor/generic.rsi
 
 - type: borgSubtype
   parent: BorgJanitorSubtypeBase
   id: BorgJanitorSubtypeMopbot
   name: Mopbot
-  spritePath: Mobs/Silicon/Chassis/janitor.rsi
-  spriteBodyState: mopbot
-  spriteHasMindState: mopbot_e
-  spriteNoMindState: mopbot_e_r
-  spriteToggleLightState: mopbot_l
+  spritePath: Mobs/Silicon/Chassis/janitor/mopbot.rsi
 
 - type: borgSubtype
   parent: BorgJanitorSubtypeBase
   id: BorgJanitorSubtypeNoble
   name: Noble-CLN
-  spritePath: Mobs/Silicon/Chassis/janitor.rsi
-  spriteBodyState: noble
-  spriteHasMindState: noble_e
-  spriteNoMindState: noble_e_r
-  spriteToggleLightState: noble_l
+  spritePath: Mobs/Silicon/Chassis/janitor/noble.rsi
 
 - type: borgSubtype
   parent: BorgJanitorSubtypeBase
   id: BorgJanitorSubtypeCricket
   name: Cricket
-  spritePath: Mobs/Silicon/Chassis/janitor.rsi
-  spriteBodyState: cricket
-  spriteHasMindState: cricket_e
-  spriteNoMindState: cricket_e_r
-  spriteToggleLightState: cricket_l
+  spritePath: Mobs/Silicon/Chassis/janitor/cricket.rsi
 
 # region Medical
 
@@ -140,61 +88,37 @@
   parent: BorgMedicalSubtypeBase
   id: BorgMedicalSubtypeStandard
   name: Standard
-  spritePath: Mobs/Silicon/Chassis/medical.rsi
-  spriteBodyState: standard
-  spriteHasMindState: standard_e
-  spriteNoMindState: standard_e_r
-  spriteToggleLightState: standard_l
+  spritePath: Mobs/Silicon/Chassis/medical/standard.rsi
 
 - type: borgSubtype
   parent: BorgMedicalSubtypeBase
   id: BorgMedicalSubtypeGeneric
   name: Generic
-  spritePath: Mobs/Silicon/Chassis/medical.rsi
-  spriteBodyState: generic
-  spriteHasMindState: generic_e
-  spriteNoMindState: generic_e_r
-  spriteToggleLightState: generic_l
+  spritePath: Mobs/Silicon/Chassis/medical/generic.rsi
 
 - type: borgSubtype
   parent: BorgMedicalSubtypeBase
   id: BorgMedicalSubtypeNeedles
   name: Needles
-  spritePath: Mobs/Silicon/Chassis/medical.rsi
-  spriteBodyState: needles
-  spriteHasMindState: generic_e
-  spriteNoMindState: generic_e_r
-  spriteToggleLightState: generic_l
+  spritePath: Mobs/Silicon/Chassis/medical/needles.rsi
 
 - type: borgSubtype
   parent: BorgMedicalSubtypeBase
   id: BorgMedicalSubtypeDroid
   name: Advanced Android
-  spritePath: Mobs/Silicon/Chassis/medical.rsi
-  spriteBodyState: droid
-  spriteHasMindState: droid_e
-  spriteNoMindState: droid_e_r
-  spriteToggleLightState: droid_l
+  spritePath: Mobs/Silicon/Chassis/medical/droid.rsi
 
 - type: borgSubtype
   parent: BorgMedicalSubtypeBase
   id: BorgMedicalSubtypeNoble
   name: Noble-MED
-  spritePath: Mobs/Silicon/Chassis/medical.rsi
-  spriteBodyState: noble
-  spriteHasMindState: noble_e
-  spriteNoMindState: noble_e_r
-  spriteToggleLightState: noble_l
+  spritePath: Mobs/Silicon/Chassis/medical/noble.rsi
 
 - type: borgSubtype
   parent: BorgMedicalSubtypeBase
   id: BorgMedicalSubtypeCricket
   name: Cricket
-  spritePath: Mobs/Silicon/Chassis/medical.rsi
-  spriteBodyState: cricket
-  spriteHasMindState: cricket_e
-  spriteNoMindState: cricket_e_r
-  spriteToggleLightState: cricket_l
+  spritePath: Mobs/Silicon/Chassis/medical/cricket.rsi
 
 # region Mining(Salvage)
 
@@ -202,51 +126,31 @@
   parent: BorgMiningSubtypeBase
   id: BorgMiningSubtypeMiningStandard
   name: Standard
-  spritePath: Mobs/Silicon/Chassis/miner.rsi
-  spriteBodyState: standard
-  spriteHasMindState: standard_e
-  spriteNoMindState: standard_e_r
-  spriteToggleLightState: standard_l
+  spritePath: Mobs/Silicon/Chassis/mining/standard.rsi
 
 - type: borgSubtype
   parent: BorgMiningSubtypeBase
   id: BorgMiningSubtypeMiningGeneric
   name: Generic
-  spritePath: Mobs/Silicon/Chassis/miner.rsi
-  spriteBodyState: generic
-  spriteHasMindState: generic_e
-  spriteNoMindState: generic_e_r
-  spriteToggleLightState: generic_l
+  spritePath: Mobs/Silicon/Chassis/mining/generic.rsi
 
 - type: borgSubtype
   parent: BorgMiningSubtypeBase
   id: BorgMiningSubtypeDroid
   name: Advanced Android
-  spritePath: Mobs/Silicon/Chassis/miner.rsi
-  spriteBodyState: droid
-  spriteHasMindState: droid_e
-  spriteNoMindState: droid_e_r
-  spriteToggleLightState: droid_l
+  spritePath: Mobs/Silicon/Chassis/mining/droid.rsi
 
 - type: borgSubtype
   parent: BorgMiningSubtypeBase
   id: BorgMiningSubtypeMiningNoble
   name: Noble-DIG
-  spritePath: Mobs/Silicon/Chassis/miner.rsi
-  spriteBodyState: noble
-  spriteHasMindState: noble_e
-  spriteNoMindState: noble_e_r
-  spriteToggleLightState: noble_l
+  spritePath: Mobs/Silicon/Chassis/mining/noble.rsi
 
 - type: borgSubtype
   parent: BorgMiningSubtypeBase
   id: BorgMiningSubtypeMiningCricket
   name: Cricket
-  spritePath: Mobs/Silicon/Chassis/miner.rsi
-  spriteBodyState: cricket
-  spriteHasMindState: cricket_e
-  spriteNoMindState: cricket_e_r
-  spriteToggleLightState: cricket_l
+  spritePath: Mobs/Silicon/Chassis/mining/cricket.rsi
 
 # region Service
 
@@ -254,60 +158,40 @@
   parent: BorgServiceSubtypeBase
   id: BorgServiceSubtypeStandard
   name: Standard
-  spritePath: Mobs/Silicon/Chassis/service.rsi
-  spriteBodyState: standard
-  spriteHasMindState: standard_e
-  spriteNoMindState: standard_e_r
-  spriteToggleLightState: standard_l
+  spritePath: Mobs/Silicon/Chassis/service/standard.rsi
 
 - type: borgSubtype
   parent: BorgServiceSubtypeBase
   id: BorgServiceSubtypeGeneric
   name: Generic
-  spritePath: Mobs/Silicon/Chassis/service.rsi
-  spriteBodyState: generic
+  spritePath: Mobs/Silicon/Chassis/service/generic.rsi
 
 - type: borgSubtype
   parent: BorgServiceSubtypeBase
   id: BorgServiceSubtypeWaitress
   name: Waitress
-  spritePath: Mobs/Silicon/Chassis/service.rsi
-  spriteBodyState: waitress
+  spritePath: Mobs/Silicon/Chassis/service/waitress.rsi
 
 - type: borgSubtype
   parent: BorgServiceSubtypeBase
   id: BorgServiceSubtypeBrobot
   name: Brobot
-  spritePath: Mobs/Silicon/Chassis/service.rsi
-  spriteBodyState: brobot
-  spriteHasMindState: brobot_e
-  spriteNoMindState: brobot_e_r
+  spritePath: Mobs/Silicon/Chassis/service/brobot.rsi
 
 - type: borgSubtype
   parent: BorgServiceSubtypeBase
   id: BorgServiceSubtypeMaximillion
   name: Maximillion
-  spritePath: Mobs/Silicon/Chassis/service.rsi
-  spriteBodyState: maximillion
-  spriteHasMindState: maximillion_e
-  spriteNoMindState: maximillion_e_r
+  spritePath: Mobs/Silicon/Chassis/service/maximillion.rsi
 
 - type: borgSubtype
   parent: BorgServiceSubtypeBase
   id: BorgServiceSubtypeNoble
   name: Noble-SRV
-  spritePath: Mobs/Silicon/Chassis/service.rsi
-  spriteBodyState: noble
-  spriteHasMindState: noble_e
-  spriteNoMindState: noble_e_r
-  spriteToggleLightState: noble_l
+  spritePath: Mobs/Silicon/Chassis/service/noble.rsi
 
 - type: borgSubtype
   parent: BorgServiceSubtypeBase
   id: BorgServiceSubtypeCricket
   name: Cricket
-  spritePath: Mobs/Silicon/Chassis/service.rsi
-  spriteBodyState: cricket
-  spriteHasMindState: cricket_e
-  spriteNoMindState: cricket_e_r
-  spriteToggleLightState: cricket_l
+  spritePath: Mobs/Silicon/Chassis/service/cricket.rsi

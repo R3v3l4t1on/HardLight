@@ -79,7 +79,7 @@
   id: RoboticCleanliness
   name: research-technology-robotic-cleanliness
   icon:
-    sprite: Mobs/Silicon/Chassis/janitor.rsi
+    sprite: Mobs/Silicon/Chassis/janitor/default.rsi # Hardlight
     state: borg
   discipline: CivilianServices
   tier: 1
