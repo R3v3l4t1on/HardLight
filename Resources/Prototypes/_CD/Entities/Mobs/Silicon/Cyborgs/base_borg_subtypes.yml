@@ -4,6 +4,14 @@
   id: BorgSubtypeBase
   name: borg subtype base
   description: Default state for other subtypes to use.
+
+# generic
+- type: borgSubtype
+  abstract: true
+  id: BorgGenericSubtypeBase
+  name: borg generic subtype
+  parentType: generic
+  dummyPrototype: BorgChassisGeneric
   # Visuals
   layerData:
     - state: borg
@@ -25,57 +33,143 @@
   footstepCollection:
     collection: FootstepBorg
 
-# generic
-- type: borgSubtype
-  parent: BorgSubtypeBase
-  abstract: true
-  id: BorgGenericSubtypeBase
-  name: borg generic subtype
-  parentType: generic
-  dummyPrototype: BorgChassisGeneric
-
 
 # mining (salvage)
 - type: borgSubtype
-  parent: BorgSubtypeBase
   abstract: true
   id: BorgMiningSubtypeBase
   name: borg mining subtype
   parentType: mining
   dummyPrototype: BorgChassisMining
+  # Visuals
+  layerData:
+    - state: borg
+      map: [ "enum.BorgVisualLayers.Body", "movement" ]
+    - state: borg_e
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
+
+  spriteBodyState: borg
+  spriteHasMindState: borg_e
+  # if rsi has a specific no mind state sprite, use that instead (i.e. borg_e_r)
+  spriteNoMindState: borg_e
+
+  footstepCollection:
+    collection: FootstepBorg
 
 # engineering
 - type: borgSubtype
-  parent: BorgSubtypeBase
   abstract: true
   id: BorgEngineerSubtypeBase
   name: borg engineering subtype
   parentType: engineering
   dummyPrototype: BorgChassisEngineer
+  # Visuals
+  layerData:
+    - state: borg
+      map: [ "enum.BorgVisualLayers.Body", "movement" ]
+    - state: borg_e
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
+
+  spriteBodyState: borg
+  spriteHasMindState: borg_e
+  # if rsi has a specific no mind state sprite, use that instead (i.e. borg_e_r)
+  spriteNoMindState: borg_e
+
+  footstepCollection:
+    collection: FootstepBorg
 
 # janitor
 - type: entity
-  parent: BorgSubtypeBase
   abstract: true
   id: BorgJanitorSubtypeBase
   name: borg janitor subtype
   parentType: janitor
   dummyPrototype: BorgChassisJanitor
+  # Visuals
+  layerData:
+    - state: borg
+      map: [ "enum.BorgVisualLayers.Body", "movement" ]
+    - state: borg_e
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
+
+  spriteBodyState: borg
+  spriteHasMindState: borg_e
+  # if rsi has a specific no mind state sprite, use that instead (i.e. borg_e_r)
+  spriteNoMindState: borg_e
+
+  footstepCollection:
+    collection: FootstepBorg
 
 # medical
 - type: entity
-  parent: BorgSubtypeBase
   abstract: true
   id: BorgMedicalSubtypeBase
   name: borg medical subtype
   parentType: medical
   dummyPrototype: BorgChassisMedical
+  # Visuals
+  layerData:
+    - state: borg
+      map: [ "enum.BorgVisualLayers.Body", "movement" ]
+    - state: borg_e
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
+
+  spriteBodyState: borg
+  spriteHasMindState: borg_e
+  # if rsi has a specific no mind state sprite, use that instead (i.e. borg_e_r)
+  spriteNoMindState: borg_e
+
+  footstepCollection:
+    collection: FootstepBorg
 
 # service
 - type: entity
-  parent: BorgSubtypeBase
   abstract: true
   id: BorgServiceSubtypeBase
   name: borg service subtype
   parentType: service
   dummyPrototype: BorgChassisService
+  # Visuals
+  layerData:
+    - state: borg
+      map: [ "enum.BorgVisualLayers.Body", "movement" ]
+    - state: borg_e
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
+
+  spriteBodyState: borg
+  spriteHasMindState: borg_e
+  # if rsi has a specific no mind state sprite, use that instead (i.e. borg_e_r)
+  spriteNoMindState: borg_e
+
+  footstepCollection:
+    collection: FootstepBorg

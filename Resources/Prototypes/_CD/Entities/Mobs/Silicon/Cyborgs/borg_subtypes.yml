@@ -2,12 +2,9 @@
 - type: borgSubtype
   parent: BorgMiningSubtypeBase
   id: spidermin
-
   dummyPrototype: BorgChassisSpidermin
-
   inventoryTemplateId: borgDutch
   spritePath: _CD/Mobs/Silicon/Borg/Mining/spidermin.rsi
-
   footstepCollection:
     collection: FootstepThud
 
@@ -15,7 +12,5 @@
 - type: borgSubtype
   parent: BorgMedicalSubtypeBase
   id: qualified-doctor
-
   dummyPrototype: BorgChassisQualifiedDoctor
-
   spritePath: _CD/Mobs/Silicon/Borg/Medical/qualified_doctor.rsi
