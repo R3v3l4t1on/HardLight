@@ -21,7 +21,7 @@
 
   # Visual
   inventoryTemplateId: borgShort
-  spritePath: Mobs/Silicon/Chassis/generic.rsi
+  spritePath: Mobs/Silicon/Chassis/generic/default.rsi
 
   # Pet
   petSuccessString: petting-success-generic-cyborg
@@ -55,7 +55,7 @@
 
   # Visual
   inventoryTemplateId: borgShort
-  spritePath: Mobs/Silicon/Chassis/engineer.rsi
+  spritePath: Mobs/Silicon/Chassis/engineering/default.rsi
 
   # Pet
   petSuccessString: petting-success-engineer-cyborg
@@ -89,7 +89,7 @@
 
   # Visual
   inventoryTemplateId: borgTall
-  spritePath: Mobs/Silicon/Chassis/miner.rsi
+  spritePath: Mobs/Silicon/Chassis/mining/default.rsi
   spriteBodyMovementState: borg_moving
 
   # Pet
@@ -123,7 +123,7 @@
 
   # Visual
   inventoryTemplateId: borgShort
-  spritePath: Mobs/Silicon/Chassis/janitor.rsi
+  spritePath: Mobs/Silicon/Chassis/janitor/default.rsi
   spriteBodyMovementState: borg_moving
 
   # Pet
@@ -167,7 +167,7 @@
 
   # Visual
   inventoryTemplateId: borgDutch
-  spritePath: Mobs/Silicon/Chassis/medical.rsi
+  spritePath: Mobs/Silicon/Chassis/medical/default.rsi
   spriteBodyMovementState: borg_moving
 
   # Pet
@@ -208,7 +208,7 @@
 
   # Visual
   inventoryTemplateId: borgTall
-  spritePath: Mobs/Silicon/Chassis/service.rsi
+  spritePath: Mobs/Silicon/Chassis/service/default.rsi
 
   # Pet
   petSuccessString: petting-success-service-cyborg

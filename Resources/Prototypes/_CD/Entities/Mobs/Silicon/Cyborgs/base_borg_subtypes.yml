@@ -1,10 +1,3 @@
-# Hardlight - cleaned up the protos to use a generic base
-- type: borgSubtype
-  abstract: true
-  id: BorgSubtypeBase
-  name: borg subtype base
-  description: Default state for other subtypes to use.
-
 # generic
 - type: borgSubtype
   abstract: true
@@ -91,7 +84,7 @@
     collection: FootstepBorg
 
 # janitor
-- type: entity
+- type: borgSubtype
   abstract: true
   id: BorgJanitorSubtypeBase
   name: borg janitor subtype
@@ -119,7 +112,7 @@
     collection: FootstepBorg
 
 # medical
-- type: entity
+- type: borgSubtype
   abstract: true
   id: BorgMedicalSubtypeBase
   name: borg medical subtype
@@ -147,7 +140,7 @@
     collection: FootstepBorg
 
 # service
-- type: entity
+- type: borgSubtype
   abstract: true
   id: BorgServiceSubtypeBase
   name: borg service subtype

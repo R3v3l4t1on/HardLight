@@ -21,7 +21,7 @@
     noMindState: borg_e_r
   - type: BorgTransponder
     sprite:
-      sprite: Mobs/Silicon/Chassis/generic.rsi
+      sprite: Mobs/Silicon/Chassis/generic/default.rsi
       state: borg
     name: cyborg
   - type: InteractionPopup
