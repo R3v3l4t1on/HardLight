@@ -266,7 +266,7 @@
   #region Starlight
   # - type: CyborgSparkEffect # Hardlight we don't have these yet...
   # - type: StationAIShunt #Starlight allow shunting into all borgs # Hardlight TOO SOON
-  - type: BorgSwitchableSubtype # Afterlight change
+  - type: BorgSwitchableSubtype # CD change
   # - type: Crawler # Hardlight TOO SOON
   - type: PreventDropOnDowned # Frontier: borgs don't drop items when falling (e.g. critical/dead)
   - type: Blindable

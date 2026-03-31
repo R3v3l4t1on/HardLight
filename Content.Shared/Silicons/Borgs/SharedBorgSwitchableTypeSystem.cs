@@ -1,4 +1,4 @@
-using Content.Shared._Afterlight.Silicons.Borgs; // Afterlight
+using Content.Shared._CD.Silicons.Borgs;
 using Content.Shared.Starlight; // Starlight-edit
 using Content.Shared.Actions;
 using Content.Shared.Interaction;
@@ -113,7 +113,7 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
 
         UpdateEntityAppearance(ent);
 
-        // AL - event for subtype system, always runs at end of borg type code
+        // CD - event for subtype system, always runs at end of borg type code
         var ev = new AfterBorgTypeSelectEvent();
         RaiseLocalEvent(ent, ref ev);
     }

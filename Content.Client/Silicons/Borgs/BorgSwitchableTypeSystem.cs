@@ -1,4 +1,4 @@
-﻿using Content.Shared._Afterlight.Silicons.Borgs;
+﻿using Content.Shared._CD.Silicons.Borgs;
 using Content.Shared.Movement.Components;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
@@ -42,11 +42,11 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
         Entity<BorgSwitchableTypeComponent> entity,
         BorgTypePrototype prototype)
     {
-        // AL - added checks to stop sprite state errors
+        // CD - added checks to stop sprite state errors
         if (!TryComp<BorgSwitchableSubtypeComponent>(entity, out var subtype) ||
             subtype.BorgSubtype != null)
             return;
-            
+
         if (TryComp(entity, out SpriteComponent? sprite))
         {
             if (_resourceCache.TryGetResource<RSIResource>(
