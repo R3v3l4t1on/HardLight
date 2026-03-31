@@ -42,13 +42,10 @@ public sealed class BorgSwitchableSubtypeSystem : SharedBorgSwitchableSubtypeSys
         SelectBorgSubtype(ent);
     }
 
-    protected override void UpdateEntityAppearance(Entity<BorgSwitchableSubtypeComponent> entity, EntityPrototype borgSubtypePrototype)
+    protected override void UpdateEntityAppearance(Entity<BorgSwitchableSubtypeComponent> entity, BorgSubtypePrototype borgSubtypePrototype)
     {
         // LOT of copy pasted code from BorgSwitchableTypeSystem, but is probably necessary unless the upstream code
         // is refactored
-
-        if (!borgSubtypePrototype.TryGetComponent<BorgSubtypeDefinitionComponent>(out var borgSubtype, ComponentFactory))
-            return;
 
         // get our required components
         var (owner, _) = entity;
@@ -61,28 +58,22 @@ public sealed class BorgSwitchableSubtypeSystem : SharedBorgSwitchableSubtypeSys
             _sprite.RemoveLayer((entity, chassisSprite), i);
         }
 
-        for (int i = 0; i < borgSubtype.LayerData.Length; i++)
+        for (int i = 0; i < borgSubtypePrototype.LayerData.Length; i++)
         {
-            var layerData = borgSubtype.LayerData[i];
+            var layerData = borgSubtypePrototype.LayerData[i];
 
-            layerData.RsiPath = borgSubtype.SpritePath?.ToString();
-            if (borgSubtype.Offset != null)
-                layerData.Offset = borgSubtype.Offset;
+            layerData.RsiPath = borgSubtypePrototype.SpritePath?.ToString();
+            if (borgSubtypePrototype.Offset != null)
+                layerData.Offset = borgSubtypePrototype.Offset;
             _sprite.AddLayer((owner, chassisSprite), layerData, i);
         }
-
-        if (borgSubtype.SpriteToggleLightState is { } lightState)
-            _sprite.LayerSetRsiState((entity, chassisSprite), BorgVisualLayers.LightStatus, lightState);
-
-        if (borgSubtype.SpriteBodyState is { } bodyState)
-            _sprite.LayerSetRsiState((entity, chassisSprite), BorgVisualLayers.Body, bodyState);
 
         if (TryComp<BorgChassisComponent>(entity, out var chassis))
         {
             _borg.SetMindStates(
                 (entity.Owner, chassis),
-                borgSubtype.SpriteHasMindState,
-                borgSubtype.SpriteNoMindState);
+                borgSubtypePrototype.SpriteHasMindState,
+                borgSubtypePrototype.SpriteNoMindState);
 
             if (TryComp(entity, out AppearanceComponent? appearance))
             {
@@ -91,13 +82,13 @@ public sealed class BorgSwitchableSubtypeSystem : SharedBorgSwitchableSubtypeSys
             }
         }
 
-        if (borgSubtype.SpriteBodyMovementState is { } movementState)
+        if (borgSubtypePrototype.SpriteBodyMovementState is { } movementState)
         {
             var spriteMovement = EnsureComp<SpriteMovementComponent>(entity);
             spriteMovement.NoMovementLayers.Clear();
             spriteMovement.NoMovementLayers["movement"] = new PrototypeLayerData
             {
-                State = borgSubtype.SpriteBodyState,
+                State = borgSubtypePrototype.SpriteBodyState,
             };
             spriteMovement.MovementLayers.Clear();
             spriteMovement.MovementLayers["movement"] = new PrototypeLayerData
