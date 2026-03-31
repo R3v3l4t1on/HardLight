@@ -61,20 +61,17 @@ public abstract class SharedBorgSwitchableSubtypeSystem : EntitySystem
     }
 
     protected virtual void UpdateEntityAppearance(Entity<BorgSwitchableSubtypeComponent> entity,
-        EntityPrototype borgSubtypePrototype)
+        BorgSubtypePrototype borgSubtypePrototype)
     {
-        if (!borgSubtypePrototype.TryGetComponent<BorgSubtypeDefinitionComponent>(out var borgSubtype, ComponentFactory))
-            return;
-
         if (TryComp(entity, out InteractionPopupComponent? popup))
         {
-            _interactionPopup.SetInteractSuccessString((entity.Owner, popup), borgSubtype.PetSuccessString);
-            _interactionPopup.SetInteractFailureString((entity.Owner, popup), borgSubtype.PetFailureString);
+            _interactionPopup.SetInteractSuccessString((entity.Owner, popup), borgSubtypePrototype.PetSuccessString);
+            _interactionPopup.SetInteractFailureString((entity.Owner, popup), borgSubtypePrototype.PetFailureString);
         }
 
         if (TryComp(entity, out FootstepModifierComponent? footstepModifier))
         {
-            footstepModifier.FootstepSoundCollection = borgSubtype.FootstepCollection;
+            footstepModifier.FootstepSoundCollection = borgSubtypePrototype.FootstepCollection;
         }
     }
 
