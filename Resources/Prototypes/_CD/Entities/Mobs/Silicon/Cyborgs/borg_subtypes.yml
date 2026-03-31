@@ -3,7 +3,7 @@
   parent: BorgMiningSubtypeBase
   id: spidermin
   dummyPrototype: BorgChassisSpidermin
-  inventoryTemplateId: borgDutch
+  inventoryTemplateId: borgDutchHL # HL
   spritePath: _CD/Mobs/Silicon/Borg/Mining/spidermin.rsi
   footstepCollection:
     collection: FootstepThud
