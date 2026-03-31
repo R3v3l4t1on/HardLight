@@ -471,6 +471,9 @@
   id: DoorElectronicsConfigurator
 
 - type: Tag
+  id: DoorRemoteWhitelist # Doors with this tag can be interacted with door remotes
+
+- type: Tag
   id: DrinkBottle
 
 - type: Tag
