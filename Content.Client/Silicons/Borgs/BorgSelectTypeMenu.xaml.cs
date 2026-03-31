@@ -87,7 +87,7 @@ public sealed partial class BorgSelectTypeMenu : FancyWindow
         if (_selectedBorgType == null)
             return;
 
-        ConfirmBorgSubtype?.Invoke(ChassisSpriteSelection.SubtypePrototype); // CD - borg subtype
+        ConfirmedBorgSubtype?.Invoke(ChassisSpriteSelection.SubtypePrototype); // CD - borg subtype
         ConfirmedBorgType?.Invoke(_selectedBorgType);
     }
 
