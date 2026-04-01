@@ -215,7 +215,7 @@
 
 - type: borgSubtype
   parent: BorgServiceSubtypeBase
-  id: BorgServiceSubtypeCricket
+  id: BorgServiceSubtypeNoble
   dummyPrototype: BorgChassisServiceNoble
   name: Noble-SRV
   spritePath: Mobs/Silicon/Chassis/service/noble.rsi
