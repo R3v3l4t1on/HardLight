@@ -36,41 +36,52 @@ public sealed partial class ChassisSpriteSelection : Control
         MainContainer.Visible = true;
 
         OptionsContainer.RemoveAllChildren();
-
+        // Hardlight start - code simplification
         var buttonGroup = new ButtonGroup();
-        List<Button> buttons = new List<Button>();
-        buttons.Add(CreateDefaultSubtypeButton(borgTypePrototype, buttonGroup));
+        List<Button> buttons =
+        [
+            CreateSubtypeButton(
+                buttonGroup,
+                borgTypePrototype.DummyPrototype,
+                "Default",
+                () =>
+                {
+                    SubtypePrototype = null;
+                    SubtypeSelected?.Invoke();
+                }
+            ),
+        ];
 
         foreach (var subtypePrototype in _proto.EnumeratePrototypes<BorgSubtypePrototype>())
         {
-            // Only add subtypes of the current selected 'main' borg type (engineering, medical, etc.)
             if (subtypePrototype.ParentType != borgTypePrototype.ID)
                 continue;
 
-            var button = new Button
-            {
-                Group = buttonGroup,
-                MinHeight = 32,
-            };
-
-            button.OnPressed += _ =>
-            {
-                SubtypePrototype = subtypePrototype;
-                SubtypeSelected?.Invoke();
-            };
-
-            button.AddChild(CreateEntityPrototypeView(subtypePrototype.DummyPrototype));
-            button.AddChild(new Label { Text = subtypePrototype.Name }); // HL
-            buttons.Add(button);
+            buttons.Add(CreateSubtypeButton(
+                buttonGroup,
+                subtypePrototype.DummyPrototype,
+                subtypePrototype.Name,
+                () =>
+                {
+                    SubtypePrototype = subtypePrototype;
+                    SubtypeSelected?.Invoke();
+                }
+            ));
         }
-
+        // Hardlight end
         foreach (var button in buttons)
         {
             OptionsContainer.AddChild(button);
         }
     }
 
-    private Button CreateDefaultSubtypeButton(BorgTypePrototype borgTypePrototype, ButtonGroup group)
+    // Hardlight start - Code optimization.
+    private Button CreateSubtypeButton(
+        ButtonGroup group,
+        EntProtoId dummyPrototype,
+        string labelText,
+        Action onPressed
+    )
     {
         var button = new Button
         {
@@ -78,17 +89,23 @@ public sealed partial class ChassisSpriteSelection : Control
             MinHeight = 32,
         };
 
-        button.OnPressed += _ =>
+        button.OnPressed += _ => onPressed();
+
+        var buttonContent = new BoxContainer
         {
-            SubtypePrototype = null;
-            SubtypeSelected?.Invoke();
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
+            HorizontalExpand = true,
+            VerticalExpand = true
         };
 
-        button.AddChild(CreateEntityPrototypeView(borgTypePrototype.DummyPrototype));
-        button.AddChild(new Label{Text = "Default"}); // HL
+        buttonContent.AddChild(CreateEntityPrototypeView(dummyPrototype));
+        buttonContent.AddChild(new Label { Text = labelText });
+
+        button.AddChild(buttonContent);
 
         return button;
     }
+    // Hardlight end
 
     private EntityPrototypeView CreateEntityPrototypeView(EntProtoId entProtoId)
     {
