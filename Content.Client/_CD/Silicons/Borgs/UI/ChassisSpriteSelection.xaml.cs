@@ -44,11 +44,7 @@ public sealed partial class ChassisSpriteSelection : Control
                 buttonGroup,
                 borgTypePrototype.DummyPrototype,
                 "Default",
-                () =>
-                {
-                    SubtypePrototype = null;
-                    SubtypeSelected?.Invoke();
-                }
+                null
             ),
         ];
 
@@ -61,11 +57,7 @@ public sealed partial class ChassisSpriteSelection : Control
                 buttonGroup,
                 subtypePrototype.DummyPrototype,
                 subtypePrototype.Name,
-                () =>
-                {
-                    SubtypePrototype = subtypePrototype;
-                    SubtypeSelected?.Invoke();
-                }
+                subtypePrototype
             ));
         }
         // Hardlight end
@@ -80,7 +72,7 @@ public sealed partial class ChassisSpriteSelection : Control
         ButtonGroup group,
         EntProtoId dummyPrototype,
         string labelText,
-        Action onPressed
+        BorgSubtypePrototype? subtypePrototype
     )
     {
         var button = new Button
@@ -89,7 +81,11 @@ public sealed partial class ChassisSpriteSelection : Control
             MinHeight = 32,
         };
 
-        button.OnPressed += _ => onPressed();
+        button.OnPressed += _ =>
+        {
+            SubtypePrototype = subtypePrototype;
+            SubtypeSelected?.Invoke();
+        };
 
         var buttonContent = new BoxContainer
         {
