@@ -2,19 +2,19 @@
 - type: entity
   id: BorgChassisSpidermin
   parent: BorgChassisSelectable
-  name: spidermin cyborg
+  name: Spidermin # Hardlight
   components:
   - type: BorgSwitchableType
     selectedBorgType: mining
   - type: BorgSwitchableSubtype
-    borgSubtype: spidermin
+    borgSubtype: BorgMedicalSubtypeSpidermin # Hardlight
 
 - type: entity
   id: BorgChassisQualifiedDoctor
   parent: BorgChassisSelectable
-  name: qualified doctor cyborg
+  name: Qualified Doctor # Hardlight
   components:
   - type: BorgSwitchableType
     selectedBorgType: medical
   - type: BorgSwitchableSubtype
-    borgSubtype: qualified-doctor
+    borgSubtype: BorgMedicalSubtypeQualifiedDoctor # Hardlight

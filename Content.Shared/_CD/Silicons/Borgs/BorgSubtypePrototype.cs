@@ -28,11 +28,15 @@ public sealed partial class BorgSubtypePrototype : IPrototype, IInheritingProtot
     [IdDataField]
     public required string ID { get; set; }
 
+    // Hardlight start: Gimme that name!
+    [DataField(required: true)]
+    public string Name = default!;
+
     /// <summary>
     /// <inheritdoc cref="BorgTypePrototype.InventoryTemplateId"/>
     /// </summary>
     [DataField]
-    public ProtoId<InventoryTemplatePrototype> InventoryTemplateId = "borgShort";
+    public ProtoId<InventoryTemplatePrototype> InventoryTemplateId = "borgShortHL"; //Hardlight change: Force HL prototypes
 
     /// <summary>
     /// The parent borg type of this subtype.

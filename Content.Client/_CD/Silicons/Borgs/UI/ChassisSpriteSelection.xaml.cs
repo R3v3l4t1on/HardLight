@@ -49,7 +49,6 @@ public sealed partial class ChassisSpriteSelection : Control
 
             var button = new Button
             {
-                ToolTip = Loc.GetString($"cd-borg-{borgTypePrototype.ID}-subtype-{subtypePrototype.ID}-name"),
                 Group = buttonGroup,
                 MinHeight = 32,
             };
@@ -61,6 +60,7 @@ public sealed partial class ChassisSpriteSelection : Control
             };
 
             button.AddChild(CreateEntityPrototypeView(subtypePrototype.DummyPrototype));
+            button.AddChild(new Label { Text = subtypePrototype.Name }); // HL
             buttons.Add(button);
         }
 
@@ -74,7 +74,6 @@ public sealed partial class ChassisSpriteSelection : Control
     {
         var button = new Button
         {
-            ToolTip = "default",
             Group = group,
             MinHeight = 32,
         };
@@ -86,6 +85,7 @@ public sealed partial class ChassisSpriteSelection : Control
         };
 
         button.AddChild(CreateEntityPrototypeView(borgTypePrototype.DummyPrototype));
+        button.AddChild(new Label{Text = "Default"}); // HL
 
         return button;
     }

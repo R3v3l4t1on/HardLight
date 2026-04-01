@@ -1,9 +1,9 @@
 # mining
 - type: borgSubtype
   parent: BorgMiningSubtypeBase
-  id: spidermin
+  id: BorgMiningSubtypeSpidermin # Hardlight
   dummyPrototype: BorgChassisSpidermin
-  inventoryTemplateId: borgDutchHL # HL
+  inventoryTemplateId: borgDutchHL # Hardlight
   spritePath: _CD/Mobs/Silicon/Borg/Mining/spidermin.rsi
   footstepCollection:
     collection: FootstepThud
@@ -11,6 +11,6 @@
 # medical
 - type: borgSubtype
   parent: BorgMedicalSubtypeBase
-  id: qualified-doctor
+  id: BorgMedicalSubtypeQualifiedDoctor # Hardlight
   dummyPrototype: BorgChassisQualifiedDoctor
   spritePath: _CD/Mobs/Silicon/Borg/Medical/qualified_doctor.rsi
