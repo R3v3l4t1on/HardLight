@@ -54,7 +54,7 @@
 - type: borgSubtype
   parent: BorgGenericSubtypeBase
   id: BorgGenericSubtypeNoble
-  dummyPrototype: BorgChassisGenericDroid
+  dummyPrototype: BorgChassisGenericNoble
   name: Noble-STD
   spritePath: Mobs/Silicon/Chassis/generic/noble.rsi
 
