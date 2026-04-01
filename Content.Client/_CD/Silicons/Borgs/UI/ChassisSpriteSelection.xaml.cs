@@ -38,15 +38,15 @@ public sealed partial class ChassisSpriteSelection : Control
         OptionsContainer.RemoveAllChildren();
         // Hardlight start - code simplification
         var buttonGroup = new ButtonGroup();
-        List<Button> buttons =
-        [
+        List<Button> buttons = new()
+        {
             CreateSubtypeButton(
                 buttonGroup,
                 borgTypePrototype.DummyPrototype,
                 "Default",
                 null
-            ),
-        ];
+            )
+        };
 
         foreach (var subtypePrototype in _proto.EnumeratePrototypes<BorgSubtypePrototype>())
         {
