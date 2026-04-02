@@ -143,14 +143,14 @@
 
 - type: borgSubtype
   parent: BorgMiningSubtypeBase
-  id: BorgMiningSubtypeMiningStandard
+  id: BorgMiningSubtypeStandard
   dummyPrototype: BorgChassisMiningStandard
   name: Standard
   spritePath: Mobs/Silicon/Chassis/mining/standard.rsi
 
 - type: borgSubtype
   parent: BorgMiningSubtypeBase
-  id: BorgMiningSubtypeMiningGeneric
+  id: BorgMiningSubtypeGeneric
   dummyPrototype: BorgChassisMiningGeneric
   name: Generic
   spritePath: Mobs/Silicon/Chassis/mining/generic.rsi
@@ -164,14 +164,14 @@
 
 - type: borgSubtype
   parent: BorgMiningSubtypeBase
-  id: BorgMiningSubtypeMiningNoble
+  id: BorgMiningSubtypeNoble
   dummyPrototype: BorgChassisMiningNoble
   name: Noble-DIG
   spritePath: Mobs/Silicon/Chassis/mining/noble.rsi
 
 - type: borgSubtype
   parent: BorgMiningSubtypeBase
-  id: BorgMiningSubtypeMiningCricket
+  id: BorgMiningSubtypeCricket
   dummyPrototype: BorgChassisMiningCricket
   name: Cricket
   spritePath: Mobs/Silicon/Chassis/mining/cricket.rsi
