@@ -87,14 +87,68 @@
 - type: Tag
   id: BorgArm
 
+# Hardlight start: quadborgs need these TODO make quadborgs use switchable
+- type: Tag
+  id: BorgEngineerHead
+
+- type: Tag
+  id: BorgEngineerLLeg
+
+- type: Tag
+  id: BorgEngineerRLeg
+
+- type: Tag
+  id: BorgEngineerTorso
+  # Hardlight end
+
 - type: Tag
   id: BorgHead
+
+# Hardlight start: quadborgs need these TODO make quadborgs use switchable
+- type: Tag
+  id: BorgJanitorHead
+
+- type: Tag
+  id: BorgJanitorLLeg
+
+- type: Tag
+  id: BorgJanitorRLeg
+
+- type: Tag
+  id: BorgJanitorTorso
+  # Hardlight end
 
 - type: Tag
   id: BorgLArm
 
 - type: Tag
   id: BorgLLeg
+
+# Hardlight start: Quadborgs need these TODO make quadborgs switchable
+- type: Tag
+  id: BorgMedicalHead
+
+- type: Tag
+  id: BorgMedicalLLeg
+
+- type: Tag
+  id: BorgMedicalRLeg
+
+- type: Tag
+  id: BorgMedicalTorso
+
+- type: Tag
+  id: BorgMiningHead
+
+- type: Tag
+  id: BorgMiningLLeg
+
+- type: Tag
+  id: BorgMiningRLeg
+
+- type: Tag
+  id: BorgMiningTorso
+# Hardlight end
 
 - type: Tag
   id: BorgRArm
@@ -134,6 +188,20 @@
 
 - type: Tag
   id: BorgModuleSyndicateAssault
+
+# Hardlight start quadborgs still need these TODO make quadborgs switchable
+- type: Tag
+  id: BorgServiceHead
+
+- type: Tag
+  id: BorgServiceLLeg
+
+- type: Tag
+  id: BorgServiceRLeg
+
+- type: Tag
+  id: BorgServiceTorso
+# Hardlight end
 
 - type: Tag
   id: Bot
