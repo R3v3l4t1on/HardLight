@@ -21,7 +21,9 @@
   - BorgModuleInvestigation
   - BorgModuleSurgery # Shitmed Change
   # Hardlight change start
+  - BorgModuleGrapplingGun
   - BorgModuleCleaning
+  - BorgModuleLightReplacer
   - BorgModuleTreatment
   - BorgModuleBureaucracy
   - BorgModuleJetpack
@@ -29,6 +31,8 @@
   - BorgModuleDefibrillator
   - BorgModuleDiagnosis
   - BorgModuleNFService
+  - BorgModuleClowning
+  - BorgModuleMusique
   - BorgModuleRCDShipyard
   - BorgModuleMining
 
@@ -37,13 +41,9 @@
   recipes:
   - BorgModuleAdvancedSurgery
   # Hardlight change start
-  - BorgModuleClowning
-  - BorgModuleMusique
   - BorgModuleTreatment
   - BorgModuleadvancedmeasures
   - BorgModuleAdvancedTreatment
-  - BorgModuleGrapplingGun
-  - BorgModuleLightReplacer
   - BorgModuleAdvancedParamedic
 
 - type: latheRecipePack
