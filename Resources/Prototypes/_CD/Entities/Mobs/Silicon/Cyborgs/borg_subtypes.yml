@@ -1,4 +1,4 @@
-# mining
+# region mining
 - type: borgSubtype
   parent: BorgMiningSubtypeBase
   id: BorgMiningSubtypeSpidermin # Hardlight
@@ -9,7 +9,7 @@
   footstepCollection:
     collection: FootstepThud
 
-# medical
+# region medical
 - type: borgSubtype
   parent: BorgMedicalSubtypeBase
   id: BorgMedicalSubtypeQualifiedDoctor # Hardlight
