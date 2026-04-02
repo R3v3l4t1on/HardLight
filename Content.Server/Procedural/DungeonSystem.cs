@@ -15,13 +15,11 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
-using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Spawners; // HardLight
 using Robust.Shared.Utility;
 
 namespace Content.Server.Procedural;
@@ -30,7 +28,6 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
 {
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
@@ -85,27 +82,22 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
         }
 
         _dungeonJobs.Clear();
-        _roomTemplateCache.Clear(); // HardLight
+        _roomTemplateCache.Clear();
+        _cachedRoomTemplateAtlases.Clear();
     }
 
     private void OnRoundStart(RoundStartingEvent ev)
     {
-        _roomTemplateCache.Clear(); // HardLight
-
-        var query = AllEntityQuery<DungeonAtlasTemplateComponent>();
-
-        while (query.MoveNext(out var uid, out _))
-        {
-            QueueDel(uid);
-        }
+        _roomTemplateCache.Clear();
+        _cachedRoomTemplateAtlases.Clear();
 
         if (!_configManager.GetCVar(CCVars.ProcgenPreload))
             return;
 
-        // Prebuild room template cache up front to avoid runtime hitches. // HardLight: Reworded
+        // Force all room template caches to be built before any procgen runs.
         foreach (var room in _prototype.EnumeratePrototypes<DungeonRoomPrototype>())
         {
-            GetOrCreateRoomTemplateData(room); // HardLight: GetOrCreateTemplate<GetOrCreateRoomTemplateData
+            GetOrCreateRoomTemplateData(room);
         }
     }
 
@@ -118,6 +110,8 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
         }
 
         _dungeonJobs.Clear();
+        _roomTemplateCache.Clear();
+        _cachedRoomTemplateAtlases.Clear();
     }
 
     private void PrototypeReload(PrototypesReloadedEventArgs obj)
@@ -127,22 +121,8 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
             return;
         }
 
-        _roomTemplateCache.Clear(); // HardLight
-
-        foreach (var proto in rooms.Modified.Values)
-        {
-            var roomProto = (DungeonRoomPrototype) proto;
-            var query = AllEntityQuery<DungeonAtlasTemplateComponent>();
-
-            while (query.MoveNext(out var uid, out var comp))
-            {
-                if (!roomProto.AtlasPath.Equals(comp.Path))
-                    continue;
-
-                QueueDel(uid);
-                break;
-            }
-        }
+        _roomTemplateCache.Clear();
+        _cachedRoomTemplateAtlases.Clear();
 
         if (!_configManager.GetCVar(CCVars.ProcgenPreload))
             return;
@@ -150,41 +130,8 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
         foreach (var proto in rooms.Modified.Values)
         {
             var roomProto = (DungeonRoomPrototype) proto;
-            GetOrCreateRoomTemplateData(roomProto); // HardLight
+            GetOrCreateRoomTemplateData(roomProto);
         }
-    }
-
-    public MapId GetOrCreateTemplate(DungeonRoomPrototype proto)
-    {
-        var query = AllEntityQuery<DungeonAtlasTemplateComponent>();
-        DungeonAtlasTemplateComponent? comp;
-
-        while (query.MoveNext(out var uid, out comp))
-        {
-            // Exists
-            if (comp.Path.Equals(proto.AtlasPath))
-            {
-                var despawn = EnsureComp<TimedDespawnComponent>(uid); // HardLight
-                despawn.Lifetime = (float) DungeonAtlasTemplateDespawnSystem.DespawnDelay.TotalSeconds; // HardLight
-                return Transform(uid).MapID;
-            }
-        }
-
-        var opts = new MapLoadOptions
-        {
-            DeserializationOptions = DeserializationOptions.Default with {PauseMaps = true},
-            ExpectedCategory = FileCategory.Map
-        };
-
-        if (!_loader.TryLoadGeneric(proto.AtlasPath, out var res, opts) || !res.Maps.TryFirstOrNull(out var map))
-            throw new Exception($"Failed to load dungeon template.");
-
-        comp = AddComp<DungeonAtlasTemplateComponent>(map.Value.Owner);
-        comp.Path = proto.AtlasPath;
-
-        var templateDespawn = EnsureComp<TimedDespawnComponent>(map.Value.Owner); // HardLight
-        templateDespawn.Lifetime = (float) DungeonAtlasTemplateDespawnSystem.DespawnDelay.TotalSeconds; // HardLight
-        return map.Value.Comp.MapId;
     }
 
     /// <summary>
