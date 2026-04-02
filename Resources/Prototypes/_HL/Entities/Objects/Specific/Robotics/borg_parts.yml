@@ -33,7 +33,7 @@
 
 - type: entity
   id: HeadBorgEngineer
-  parent: BaseBorgHead
+  parent: LightHeadBorg
   name: engineer quadborg head
   components:
   - type: Sprite
@@ -153,7 +153,7 @@
 
 - type: entity
   id: HeadBorgMedical
-  parent: BaseBorgHead
+  parent: LightHeadBorg
   name: medical quadborg head
   components:
     - type: Sprite
@@ -213,7 +213,7 @@
 
 - type: entity
   id: HeadBorgMining
-  parent: BaseBorgHead
+  parent: LightHeadBorg
   name: mining quadborg head
   components:
     - type: Sprite
@@ -273,7 +273,7 @@
 
 - type: entity
   id: HeadBorgService
-  parent: BaseBorgHead
+  parent: LightHeadBorg
   name: service quadborg head
   components:
   - type: Sprite
