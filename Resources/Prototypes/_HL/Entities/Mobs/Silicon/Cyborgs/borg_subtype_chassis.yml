@@ -31,7 +31,7 @@
     borgSubtype: BorgEngineerSubtypeMekaM
 
 - type: entity
-  id: BorgChassisEngineerSFMeka
+  id: BorgChassisEngineerMekaSF
   parent: BorgChassisSelectable
   name: Meka-SF
   components:
@@ -145,7 +145,7 @@
     borgSubtype: BorgMedicalSubtypeMekaM
 
 - type: entity
-  id: BorgChassisMedicalSFMeka
+  id: BorgChassisMedicalMekaSF
   parent: BorgChassisSelectable
   name: Meka-SF
   components:
@@ -207,7 +207,7 @@
     borgSubtype: BorgMiningSubtypeMekaM
 
 - type: entity
-  id: BorgChassisMiningSFMeka
+  id: BorgChassisMiningMekaSF
   parent: BorgChassisSelectable
   name: Meka-SF
   components:
@@ -279,7 +279,7 @@
     borgSubtype: BorgServiceSubtypeMekaM
 
 - type: entity
-  id: BorgChassisServiceSFMeka
+  id: BorgChassisServiceMekaSF
   parent: BorgChassisSelectable
   name: Meka-SF
   components:
