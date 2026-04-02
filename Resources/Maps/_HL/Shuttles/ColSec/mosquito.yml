@@ -236,6 +236,7 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: BecomesStation
+      id: Mosquito
     - type: InitRepairSnapshot
       id: Mosquito
     - type: IFF
