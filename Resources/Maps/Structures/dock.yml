@@ -39,7 +39,6 @@ entities:
       name: grid
     - type: Transform
       pos: -0.484375,-0.46875
-      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -7169,8 +7168,6 @@ entities:
       pos: -14.5,18.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7183,8 +7180,6 @@ entities:
       pos: -14.5,-17.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7323,8 +7318,6 @@ entities:
       pos: -8.5,-11.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7351,8 +7344,6 @@ entities:
       pos: -13.5,-0.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7366,8 +7357,6 @@ entities:
       pos: -18.5,-0.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7381,8 +7370,6 @@ entities:
       pos: -14.5,-6.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7396,8 +7383,6 @@ entities:
       pos: -8.5,12.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7423,8 +7408,6 @@ entities:
       pos: -14.5,7.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7466,8 +7449,6 @@ entities:
       pos: -15.5,-18.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7506,8 +7487,6 @@ entities:
       pos: -15.5,19.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7534,8 +7513,6 @@ entities:
       pos: -13.5,1.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7638,8 +7615,6 @@ entities:
       pos: -9.5,13.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7653,8 +7628,6 @@ entities:
       pos: -14.5,9.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7668,8 +7641,6 @@ entities:
       pos: -14.5,-8.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7682,8 +7653,6 @@ entities:
       pos: -18.5,1.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
@@ -7697,8 +7666,6 @@ entities:
       pos: -9.5,-12.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 1118
     - type: AtmosPipeLayers
