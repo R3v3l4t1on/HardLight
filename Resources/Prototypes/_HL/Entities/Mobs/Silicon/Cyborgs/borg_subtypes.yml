@@ -70,7 +70,7 @@
   id: BorgJanitorSubtypeK4t
   dummyPrototype: BorgChassisJanitorK4t
   name: K4T-CLN
-  spritePath: _HL/Mobs/Silicon/Borg/Janitor/k4t-jani.rsi
+  spritePath: _HL/Mobs/Silicon/Borg/Janitor/k4t_jani.rsi
 
 - type: borgSubtype
   parent: BorgJanitorSubtypeBase
