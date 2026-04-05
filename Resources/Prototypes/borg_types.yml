@@ -51,7 +51,7 @@
   defaultModules:
   - BorgModuleTool
   - BorgModuleConstruction
-  - BorgModuleRCDShipyard # Frontier: RCD<RCDShipyard
+  - BorgModuleRCD
   - BorgModuleCable
   - BorgModuleJetpack # Frontier
 
@@ -164,7 +164,7 @@
   - BorgModuleTool # Starlight
   - BorgModuleTreatment
   # - BorgModuleAdvancedTreatment # Frontier
-  # - BorgModuleDefibrillator # Frontier
+  - BorgModuleDefibrillator
   - BorgModuleJetpack # Frontier
 
   radioChannels:
