@@ -55,6 +55,7 @@
   - type: LockingWhitelist
     blacklist:
       components:
+      - BorgChassis # Hardlight
       - RoboticsConsole
   - type: Sanitized
   - type: Hands
