@@ -11,6 +11,9 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleSecurity
+    - BorgModuleSyndicate
+    - BorgModuleSyndicateAssault
+    - XenoborgModuleGeneric
 
   defaultModules:
     - BorgModuleTool
@@ -20,8 +23,16 @@
 
   radioChannels:
   - Science
+  - ColSec
   - Security
+
+  
+  addComponents:
+  - type: FlashImmunity
+  - type: SiliconLawProvider
+    laws: Robocop
+  - type: ShowSecurityIcons
 
   # Visual
   inventoryTemplateId: borgShortHL
-  spritePath: _HL/Mobs/Silicon/Chassis/Security/default.rsi
+  spritePath: _HL/Mobs/Silicon/Chassis/Security/security.rsi # TODO fix this 
