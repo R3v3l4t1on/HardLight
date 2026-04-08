@@ -1652,53 +1652,53 @@
       jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: jumpsuit-female
       back:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: back
       outerClothing:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: outerclothing
       gloves:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: hand
       shoes:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: shoes
     displacements:
       jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: jumpsuit-male
       back:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: back
       outerClothing:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: outerclothing
       gloves:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: hand
       shoes:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: shoes
   - type: Tag
     tags:
@@ -1723,53 +1723,53 @@
       jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: jumpsuit-female
       back:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: back
       outerClothing:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: outerclothing
       gloves:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: hand
       shoes:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: shoes
     displacements:
       jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: jumpsuit-male
       back:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: back
       outerClothing:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: outerclothing
       gloves:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: hand
       shoes:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Moth/displacement.rsi
+            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: shoes
 
 #region HUMAN ####
