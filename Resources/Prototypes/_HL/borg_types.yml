@@ -1,1 +1,27 @@
+# Security borg
+- type: borgType
+  id: security
 
+  # Description
+  dummyPrototype: BorgChassisSecurity
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleSecurity
+
+  defaultModules:
+    - BorgModuleTool
+    - BorgModuleStun
+    - BorgModuleKill
+    - BorgModuleInvestigation
+
+  radioChannels:
+  - Science
+  - Security
+
+  # Visual
+  inventoryTemplateId: borgShortHL
+  spritePath: _HL/Mobs/Silicon/Chassis/Security/default.rsi
