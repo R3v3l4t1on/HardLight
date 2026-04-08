@@ -95,8 +95,8 @@
 
 - type: borgSubtype
   parent: BorgGenericSubtypeBase
-  id: BorgEngineerSubtypeMekaSFPeace
-  dummyPrototype: BorgChassisEngineerMekaSFPeace
+  id: BorgGenericSubtypeMekaSFPeace
+  dummyPrototype: BorgChassisGenericMekaSFPeace
   name: Meka-SF (Peace)
   spritePath: _HL/Mobs/Silicon/Borg/Peace/sfmeka_peace.rsi
 
@@ -237,14 +237,14 @@
 - type: borgSubtype
   parent: BorgMiningSubtypeBase
   id: BorgCargoSubtypeMekaF
-  dummyPrototype: BorgCargoMiningMekaF
+  dummyPrototype: BorgChassisCargoMekaF
   name: Meka-F (Cargo)
   spritePath: _HL/Mobs/Silicon/Borg/Cargo/fmeka_cargo.rsi
 
 - type: borgSubtype
   parent: BorgMiningSubtypeBase
   id: BorgCargoSubtypeMeka
-  dummyPrototype: BorgCargoMiningMeka
+  dummyPrototype: BorgChassisCargoMeka
   name: Meka (Cargo)
   spritePath: _HL/Mobs/Silicon/Borg/Cargo/meka_cargo.rsi
 
@@ -274,7 +274,7 @@
   id: BorgCargoSubtypeK4tAlt
   dummyPrototype: BorgChassisCargoK4tAlt
   name: K4T-CRG-alt
-  spritePath: _HL/Mobs/Silicon/Borg/Cargo/k4t_alt_cargo.rsi # TODO the fucking folder doesn't have the file extension but I can't exactly get to that atm...
+  spritePath: _HL/Mobs/Silicon/Borg/Cargo/k4t_cargo_alt.rsi # WHY IS THIS ONE NAMED THE OTHER WAY AROUND. WHY!!
 
 # region security
 
@@ -311,7 +311,7 @@
   id: BorgSecuritySubtypeMekaFSyndie
   dummyPrototype: BorgChassisSecurityMekaFSyndie
   name: Meka-F (Syndie)
-  spritePath: _HL/Mobs/Silicon/Borg/Security/fmeka_syndie.rsi
+  spritePath: _HL/Mobs/Silicon/Borg/Syndicate/fmeka_syndie.rsi
 
 - type: borgSubtype
   parent: BorgSecuritySubtypeBase
