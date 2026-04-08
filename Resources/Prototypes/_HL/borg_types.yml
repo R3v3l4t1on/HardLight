@@ -30,7 +30,7 @@
   addComponents:
   - type: FlashImmunity
   - type: SiliconLawProvider
-    laws: Robocop
+    laws: RobocopLawset
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
 
