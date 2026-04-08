@@ -31,7 +31,8 @@
   - type: FlashImmunity
   - type: SiliconLawProvider
     laws: Robocop
-  - type: ShowSecurityIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
 
   # Visual
   inventoryTemplateId: borgShortHL
