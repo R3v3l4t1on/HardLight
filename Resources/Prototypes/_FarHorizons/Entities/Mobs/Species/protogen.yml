@@ -1719,11 +1719,11 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
             state: hand
-      shoes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
-            state: shoes
+      # shoes: # Hardlight Humans have no shoes displacement so this is breaking tests, moths do I guess. Someone fix this.
+      #   sizeMaps:
+      #     32:
+      #       sprite: Mobs/Species/Human/displacement.rsi #TODO port moth displacements
+      #       state: shoes
     displacements:
       jumpsuit:
         sizeMaps:
