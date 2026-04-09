@@ -12,7 +12,7 @@
     },
     {
       "name": "borg",
-      "directions": 4
+      "directions": 2
     },
     {
       "name": "borg-rest"
@@ -25,15 +25,15 @@
     },
     {
       "name": "borg_e",
-      "directions": 4
+      "directions": 2
     },
     {
       "name": "borg_l",
-      "directions": 4
+      "directions": 2
     },
     {
       "name": "borg_e_r",
-      "directions": 4
+      "directions": 2
     }
   ]
 }
