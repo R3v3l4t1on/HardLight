@@ -4,7 +4,7 @@
   "copyright": "Taken from Bubberstation at https://github.com/Bubberstation/Bubberstation/blob/bb8d8f968abdddc1dcf86ceda8d47001d531e321/modular_skyrat/modules/borgs/icons/tallrobot_ninja.dmi",
   "size": {
     "x": 32,
-    "y": 64
+    "y": 32
   },
   "states": [
     {
@@ -12,7 +12,7 @@
     },
     {
       "name": "borg",
-      "directions": 2
+      "directions": 4
     },
     {
       "name": "borg-rest"
@@ -25,15 +25,15 @@
     },
     {
       "name": "borg_e",
-      "directions": 2
+      "directions": 4
     },
     {
       "name": "borg_l",
-      "directions": 2
+      "directions": 4
     },
     {
       "name": "borg_e_r",
-      "directions": 2
+      "directions": 4
     }
   ]
 }
