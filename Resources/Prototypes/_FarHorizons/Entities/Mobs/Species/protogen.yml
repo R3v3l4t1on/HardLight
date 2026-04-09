@@ -583,42 +583,42 @@
       jumpsuit:
         sizeMaps:
           32:
-            sprite: _ImpStation/Mobs/Species/Thaven/displacement.rsi #HL
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: jumpsuit
       head:
         sizeMaps:
           32:
-            sprite: _ImpStation/Mobs/Species/Thaven/displacement.rsi #HL
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: head
       eyes:
         sizeMaps:
           32:
-            sprite: _ImpStation/Mobs/Species/Thaven/displacement.rsi #HL
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: eyes
       ears:
         sizeMaps:
           32:
-            sprite: _ImpStation/Mobs/Species/Thaven/displacement.rsi #HL
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: head
       mask:
         sizeMaps:
           32:
-            sprite: _ImpStation/Mobs/Species/Thaven/displacement.rsi #HL
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: mask
       neck:
         sizeMaps:
           32:
-            sprite: _ImpStation/Mobs/Species/Thaven/displacement.rsi #HL
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: neck
       outerClothing:
         sizeMaps:
           32:
-            sprite: _ImpStation/Mobs/Species/Thaven/displacement.rsi #HL
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: outerclothing_hardsuit
       gloves:
         sizeMaps:
           32:
-            sprite: _ImpStation/Mobs/Species/Thaven/displacement.rsi #HL
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: hands
   - type: Tag
     tags:
@@ -643,42 +643,42 @@
       jumpsuit:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: jumpsuit
       head:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: head
       eyes:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: eyes
       ears:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: head
       mask:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: mask
       neck:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: neck
       outerClothing:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: outerclothing_hardsuit
       gloves:
         sizeMaps:
           32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            sprite: _Impstation/Mobs/Species/Thaven/displacement.rsi #HL
             state: hands
 
 #region LASPI ####
