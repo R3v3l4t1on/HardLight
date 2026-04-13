@@ -509,7 +509,6 @@
     - item: HandLabeler
     - item: RubberStampApproved
     - item: RubberStampDenied
-    - item: RadioHandheld
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: appraisal-module }
 
