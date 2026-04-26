@@ -41,7 +41,6 @@
   recipes:
   - BorgModuleAdvancedSurgery
   # Hardlight change start
-  - BorgModuleTreatment
   - BorgModuleadvancedmeasures
   - BorgModuleAdvancedChemical
   - BorgModuleAdvancedParamedic
