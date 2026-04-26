@@ -640,7 +640,7 @@
         tags:
         - Ore
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-mining-module }
+    icon: { sprite: _NF/Interface/Actions/actions_borg.rsi, state: adv-drill-module } # Frontier
 
 - type: entity
   id: BorgModuleTraversal
