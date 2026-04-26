@@ -20,14 +20,15 @@
   - BorgModuleInvestigation
   - BorgModuleSurgery # Shitmed Change
   # Hardlight change start
-  - BorgModuleGrapplingGun
+  - BorgModuleTraversal
   - BorgModuleCleaning
-  - BorgModuleLightReplacer
-  - BorgModuleTreatment
+  - BorgModuleCustodial
+  - BorgModuleTopicals
+  - BorgModuleChemical
   - BorgModuleBureaucracy
   - BorgModuleJetpack
   - BorgModuleConstruction
-  - BorgModuleDefibrillator
+  - BorgModuleRescue
   - BorgModuleDiagnosis
   - BorgModuleNFService
   - BorgModuleClowning
@@ -42,7 +43,7 @@
   # Hardlight change start
   - BorgModuleTreatment
   - BorgModuleadvancedmeasures
-  - BorgModuleAdvancedTreatment
+  - BorgModuleAdvancedChemical
   - BorgModuleAdvancedParamedic
 
 - type: latheRecipePack
