@@ -616,7 +616,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: mining-module }
 
 - type: entity
-  id: BorgModuleGrapplingGun
+  id: BorgModuleAdvancedMining
   parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
   name: advanced mining cyborg module
   description: Advanced cargo module containing advanced mining equipment. Studies show it advances productivity of a cyborg by 150%.
@@ -626,7 +626,7 @@
     - state: cargo
     - state: icon-mining-adv
   - type: ItemBorgModule
-    moduleID: AdvancedMining
+    moduleId: AdvancedMining
     items:
     - MiningDrillDiamond
     - Shovel
@@ -687,7 +687,7 @@
     - PowerDrill
     - WelderExperimental
     - Multitool
-    - RemoteSignaller
+    - RemoteSignallerAdvanced
     - MaintenanceJack # Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-tools-module }
@@ -768,6 +768,11 @@
     items:
     - RCDRecharging
     - ShipRepairDeviceRecharging # Mono
+    - BorgFireExtinguisher
+    - BorgHandheldGPSBasic
+    - GasAnalyzer
+    - HolofanProjectorBorg
+    - GeigerCounter
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: rcd-module }
 
@@ -789,9 +794,9 @@
 
 # janitorial modules (this gets its own unique things because janis are epic)
 - type: entity
-  id: BorgModuleLightReplacer
+  id: BorgModuleCustodial
   parent: [ BaseBorgModuleJanitor, BaseProviderBorgModule ]
-  name: light replacer cyborg module
+  name: custodial cyborg module
   components:
   - type: Sprite
     layers:
@@ -801,8 +806,7 @@
     moduleId: LightReplacer # Frontier
     items:
     - LightReplacer
-    - Crowbar
-    - Screwdriver
+    - Plunger
   # Frontier: droppable items
   - type: DroppableBorgModule
     moduleId: LightReplacer
@@ -813,6 +817,10 @@
         components:
         - LightBulb
       displayName: borg-placeholder-display-name-lights
+    - id: SoapNT
+      whitelist:
+        tags:
+        - Soap
   # End Frontier
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: light-replacer-module }
@@ -830,6 +838,7 @@
     moduleId: Cleaning # Frontier
     items:
     - MopItem
+    - BorgSprayBottle
     # - Bucket # Frontier
     # - TrashBag # Frontier
   # Frontier: droppable items
@@ -901,9 +910,9 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: diagnosis-module }
 
 - type: entity
-  id: BorgModuleTreatment
+  id: BorgModuleTopicals
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
-  name: treatment cyborg module
+  name: topicals cyborg module
   components:
   - type: Sprite
     layers:
@@ -951,7 +960,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: treatment-module }
 
 - type: entity
-  id: BorgModuleDefibrillator
+  id: BorgModuleRescue
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
   name: defibrillator cyborg module
   components:
@@ -962,21 +971,25 @@
   - type: ItemBorgModule
     moduleId: Defibrillator # Frontier
     items:
+    - HandheldHealthAnalyzerUnpowered
     - DefibrillatorOneHandedUnpowered
+    - BorgFireExtinguisher
+    - BorgHandheldGPSBasic
+    - HandLabeler
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module }
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module } 
 
 - type: entity
-  id: BorgModuleAdvancedTreatment
+  id: BorgModuleChemical
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
-  name: advanced treatment cyborg module
+  name: chemical cyborg module
   components:
   - type: Sprite
     layers:
     - state: medical
     - state: icon-chemist
   - type: ItemBorgModule
-    moduleId: AdvancedTreatment # Frontier
+    moduleId: Chemical # Frontier
     items:
     - HandheldHealthAnalyzerUnpowered
     # - Beaker # Frontier
@@ -985,8 +998,12 @@
     - BorgHypo
   # Frontier: droppable borg items
   - type: DroppableBorgModule
-    moduleId: AdvancedTreatment
+    moduleId: Chemical
     items:
+    - id: Beaker
+      whitelist:
+        tags:
+        - GlassBeaker
     - id: Beaker
       whitelist:
         tags:
@@ -997,7 +1014,39 @@
         - GlassBeaker
   # End Frontier: droppable borg items
   - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-diagnosis-module }
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
+
+- type: entity
+  id: BorgModuleAdvancedChemical
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: advanced chemical cyborg module
+  description: Advanced medical module containing the cyborg adaptation of the highly coveted hypospray. Now your cyborgs can inject crew-harmers with chloral hydrate even faster!
+  components:
+  - type: Sprite
+    layers:
+    - state: medical
+    - state: icon-chemist
+  - type: ItemBorgModule
+    moduleId: AdvancedChemical
+    items:
+    - HandheldHealthAnalyzerUnpowered
+    - BorgHypo
+    - Syringe
+  - type: DroppableBorgModule
+    moduleId: AdvancedChemical
+    items:
+    - id: Beaker
+      whitelist:
+        tags:
+        - GlassBeaker
+    - id: Beaker
+      whitelist:
+        tags:
+        - GlassBeaker
+    - id: Beaker
+      whitelist:
+        tags:
+        - GlassBeaker
 
 # science modules
 # todo: if science ever gets their own custom robot, add more "sci" modules.
@@ -1014,11 +1063,18 @@
     moduleId: Artifact # Frontier
     items:
     - NodeScanner
-    - Multitool
-    - Wrench
     - SprayBottle
-    - Beaker
+    - GasAnalyzer
+    - BorgDropper
     - Syringe
+    - GeigerCounter
+  - type: DroppableBorgModule
+    moduleId: Artifact
+    items:
+    - id: Beaker
+      whitelist:
+        tags:
+        - GlassBeaker
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: node-scanner-module }
 
@@ -1037,6 +1093,7 @@
     - AnomalyScanner
     - AnomalyLocatorUnpowered
     - AnomalyLocatorWideUnpowered
+    - HandLabeler
     - RemoteSignaller
     - Multitool
   - type: BorgModuleIcon
