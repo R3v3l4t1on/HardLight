@@ -624,7 +624,8 @@
   - type: Sprite
     layers:
     - state: cargo
-    - state: icon-mining-adv
+    - state: icon-advancedmining
+      sprite: _NF/Objects/Specific/Robotics/borgmodule.rsi
   - type: ItemBorgModule
     moduleId: AdvancedMining
     items:
@@ -634,6 +635,7 @@
     - OreBagOfHolding
   - type: DroppableBorgModule # Starlight
     moduleId: AdvancedMining
+    items: []
     placeholders: 
     - id: GoldOre
       whitelist:
