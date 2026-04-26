@@ -107,7 +107,7 @@
       state: generic
   - type: RandomSpawner
     rarePrototypes:
-    - BorgModuleDefibrillator
+    - BorgModuleRescue
     - BorgModuleAdvancedCleaning
     # - BorgModuleClowning # Frontier: base
     - BorgModuleGardening
