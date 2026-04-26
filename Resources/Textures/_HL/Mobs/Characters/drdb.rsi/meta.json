@@ -10,6 +10,14 @@
     {
       "name": "drdinobones",
 	  "directions": 4
+    },
+	{
+      "name": "drdinobonesl",
+	  "directions": 4
+    },
+	{
+      "name": "drdinobonese",
+	  "directions": 4
     }
   ]
 }
