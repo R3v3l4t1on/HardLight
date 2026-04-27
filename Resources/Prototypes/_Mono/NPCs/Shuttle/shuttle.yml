@@ -175,7 +175,50 @@
 - type: htnCompound
   id: AttackerShuttleByteCompound
   branches:
+  # Hit-and-run: ~30% chance per replan, when a target is inside the
+  # close band, to break off to ~500m and keep firing while creating
+  # distance. Reads as "byte makes an attack run, then peels away,
+  # then comes back in" instead of static orbiting. RandomChancePrecondition
+  # is evaluated only at plan time (not per-tick) so this is free at
+  # runtime.
+  - preconditions:
+    - !type:RandomChancePrecondition
+      chance: 0.3
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: NearbyShuttleTargetsByte
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipMoveToOperator
+        shutdownState: PlanFinished
+        removeKeyOnFinish: false
+        alwaysFaceTarget: true
+        inRangeMaxSpeed: null # commit to the disengage at full burn
+        range: 500
+        rangeTolerance: 50
+        avoidProjectiles: true
+        maxTargetingRange: 1000
+        targetKey: TargetCoordinates
+        mode: GoToRange
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipFireGunsOperator
+        shutdownState: TaskFinished
+        removeKeyOnFinish: false
+        leadingAccuracy: 0.7 # medium-rank: imperfect target leading
+        maxTargetingRange: 1000
+        targetKey: TargetCoordinates
+      services:
+      - !type:UtilityService
+        id: TargetsService
+        proto: NearbyShuttleTargetsByte
+        key: Target
+        coordinatesKey: TargetCoordinates
   # Close pursuit: target inside 500m, full chase + orbit + fire.
+  # Orbit at ~200m so even short-range hitscan turrets are well inside
+  # their effective firing line on the player. Moderate InRangeMaxSpeed
+  # (8 m/s) keeps the byte moving around the orbit ring so it isn't a
+  # static target, but slow enough that its guns track instead of
+  # whipping past the aim solution.
   - tasks:
     - !type:HTNPrimitiveTask
       operator: !type:UtilityOperator
@@ -185,9 +228,9 @@
         shutdownState: PlanFinished
         removeKeyOnFinish: false
         alwaysFaceTarget: true
-        inRangeMaxSpeed: null # orbit at top velocity
-        range: 300
-        rangeTolerance: 100
+        inRangeMaxSpeed: 8 # cruise the orbit ring slow enough to aim
+        range: 200
+        rangeTolerance: 50
         avoidProjectiles: true
         maxTargetingRange: 500
         targetKey: TargetCoordinates
@@ -196,7 +239,7 @@
       operator: !type:ShipFireGunsOperator
         shutdownState: TaskFinished
         removeKeyOnFinish: false
-        leadingAccuracy: 1
+        leadingAccuracy: 0.7 # medium-rank: imperfect target leading
         maxTargetingRange: 500
         targetKey: TargetCoordinates
       services:
@@ -229,7 +272,7 @@
       operator: !type:ShipFireGunsOperator
         shutdownState: TaskFinished
         removeKeyOnFinish: false
-        leadingAccuracy: 1
+        leadingAccuracy: 0.7 # medium-rank: imperfect target leading
         maxTargetingRange: 1000
         targetKey: TargetCoordinates
       services:
@@ -248,12 +291,270 @@
 - type: htnCompound
   id: ShooterShuttleByteAggroCompound
   branches:
+  # 0. Station avoidance: if the ShipAggroSystem detected we wandered
+  #    inside the no-go radius around a player station, drop aggro and
+  #    burn back outside before doing anything else. Once outside the
+  #    border, fall straight into the normal patrol compound so the
+  #    ship doesn't sit idle at the flee waypoint waiting to replan.
+  - preconditions:
+    - !type:KeyExistsPrecondition
+      key: AvoidStationCoordinates
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipMoveToOperator
+        targetKey: AvoidStationCoordinates
+        removeKeyOnFinish: false
+        shutdownState: TaskFinished
+        mode: GoToRange
+        range: 200
+        rangeTolerance: 100
+        avoidCollisions: true
+        avoidProjectiles: false
+        leadingEnabled: false
+        requireAnchored: false
+        # Flee waypoint sits ~6 km from the station; clamp the
+        # operator's drop range well above that.
+        maxTargetingRange: 60000
+    # After the flee maneuver completes, immediately resume patrol
+    # behavior. ShipAggroSystem will have cleared the Aggroed key
+    # while inside the no-go zone, so the byte returns to wandering
+    # the 7-20 km annulus rather than idling at the border.
+    - !type:HTNCompoundTask
+      task: ShooterShuttleByteCompound
   - preconditions:
     - !type:KeyExistsPrecondition
       key: Aggroed
     tasks:
     - !type:HTNCompoundTask
       task: AttackerShuttleByteCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: ShooterShuttleByteCompound
+
+# Rank-scaled byte chase variants. The "byte" drone family has three
+# physical sizes (s/m/l prefix on the spawner names). Larger drones
+# are tougher AND smarter; smaller drones are slower in the orbit ring
+# AND lead targets less accurately, so they spray and miss more often.
+# AttackerShuttleByteCompound (above) stays as the medium-rank baseline;
+# these two only override inRangeMaxSpeed (cruise speed in orbit) and
+# leadingAccuracy (how well guns predict target velocity). Disengage
+# branch chance also scales: small bytes break off more often (timid),
+# large bytes commit harder (aggressive).
+
+# Small byte (s prefix, e.g. sgbyte): slow, sloppy aim, often disengages.
+- type: htnCompound
+  id: AttackerShuttleByteSmallCompound
+  branches:
+  - preconditions:
+    - !type:RandomChancePrecondition
+      chance: 0.4 # timid - peels off more often
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: NearbyShuttleTargetsByte
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipMoveToOperator
+        shutdownState: PlanFinished
+        removeKeyOnFinish: false
+        alwaysFaceTarget: true
+        inRangeMaxSpeed: null
+        range: 500
+        rangeTolerance: 50
+        avoidProjectiles: true
+        maxTargetingRange: 1000
+        targetKey: TargetCoordinates
+        mode: GoToRange
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipFireGunsOperator
+        shutdownState: TaskFinished
+        removeKeyOnFinish: false
+        leadingAccuracy: 0.4 # bad shot
+        maxTargetingRange: 1000
+        targetKey: TargetCoordinates
+      services:
+      - !type:UtilityService
+        id: TargetsService
+        proto: NearbyShuttleTargetsByte
+        key: Target
+        coordinatesKey: TargetCoordinates
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: NearbyShuttleTargetsByte
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipMoveToOperator
+        shutdownState: PlanFinished
+        removeKeyOnFinish: false
+        alwaysFaceTarget: true
+        inRangeMaxSpeed: 4 # noticeably slower than medium
+        range: 200
+        rangeTolerance: 50
+        avoidProjectiles: true
+        maxTargetingRange: 500
+        targetKey: TargetCoordinates
+        mode: Orbit
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipFireGunsOperator
+        shutdownState: TaskFinished
+        removeKeyOnFinish: false
+        leadingAccuracy: 0.4 # bad shot
+        maxTargetingRange: 500
+        targetKey: TargetCoordinates
+      services:
+      - !type:UtilityService
+        id: TargetsService
+        proto: NearbyShuttleTargetsByte
+        key: Target
+        coordinatesKey: TargetCoordinates
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: NearbyShuttleTargetsByteFar
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipMoveToOperator
+        shutdownState: PlanFinished
+        removeKeyOnFinish: false
+        alwaysFaceTarget: true
+        inRangeMaxSpeed: 3
+        range: 700
+        rangeTolerance: 100
+        avoidProjectiles: true
+        maxTargetingRange: 1000
+        targetKey: TargetCoordinates
+        mode: GoToRange
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipFireGunsOperator
+        shutdownState: TaskFinished
+        removeKeyOnFinish: false
+        leadingAccuracy: 0.4
+        maxTargetingRange: 1000
+        targetKey: TargetCoordinates
+      services:
+      - !type:UtilityService
+        id: TargetsService
+        proto: NearbyShuttleTargetsByteFar
+        key: Target
+        coordinatesKey: TargetCoordinates
+
+# Large byte (l prefix, e.g. lbyte/lgbyte): fast in orbit, accurate guns,
+# rarely disengages.
+- type: htnCompound
+  id: AttackerShuttleByteLargeCompound
+  branches:
+  - preconditions:
+    - !type:RandomChancePrecondition
+      chance: 0.15 # aggressive - rarely peels off
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: NearbyShuttleTargetsByte
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipMoveToOperator
+        shutdownState: PlanFinished
+        removeKeyOnFinish: false
+        alwaysFaceTarget: true
+        inRangeMaxSpeed: null
+        range: 500
+        rangeTolerance: 50
+        avoidProjectiles: true
+        maxTargetingRange: 1000
+        targetKey: TargetCoordinates
+        mode: GoToRange
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipFireGunsOperator
+        shutdownState: TaskFinished
+        removeKeyOnFinish: false
+        leadingAccuracy: 0.9 # strong lead, but can still miss
+        maxTargetingRange: 1000
+        targetKey: TargetCoordinates
+      services:
+      - !type:UtilityService
+        id: TargetsService
+        proto: NearbyShuttleTargetsByte
+        key: Target
+        coordinatesKey: TargetCoordinates
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: NearbyShuttleTargetsByte
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipMoveToOperator
+        shutdownState: PlanFinished
+        removeKeyOnFinish: false
+        alwaysFaceTarget: true
+        inRangeMaxSpeed: 12 # faster orbit
+        range: 200
+        rangeTolerance: 50
+        avoidProjectiles: true
+        maxTargetingRange: 500
+        targetKey: TargetCoordinates
+        mode: Orbit
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipFireGunsOperator
+        shutdownState: TaskFinished
+        removeKeyOnFinish: false
+        leadingAccuracy: 0.9 # strong lead, but can still miss
+        maxTargetingRange: 500
+        targetKey: TargetCoordinates
+      services:
+      - !type:UtilityService
+        id: TargetsService
+        proto: NearbyShuttleTargetsByte
+        key: Target
+        coordinatesKey: TargetCoordinates
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: NearbyShuttleTargetsByteFar
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipMoveToOperator
+        shutdownState: PlanFinished
+        removeKeyOnFinish: false
+        alwaysFaceTarget: true
+        inRangeMaxSpeed: 8
+        range: 700
+        rangeTolerance: 100
+        avoidProjectiles: true
+        maxTargetingRange: 1000
+        targetKey: TargetCoordinates
+        mode: GoToRange
+    - !type:HTNPrimitiveTask
+      operator: !type:ShipFireGunsOperator
+        shutdownState: TaskFinished
+        removeKeyOnFinish: false
+        leadingAccuracy: 0.9 # strong lead, but can still miss
+        maxTargetingRange: 1000
+        targetKey: TargetCoordinates
+      services:
+      - !type:UtilityService
+        id: TargetsService
+        proto: NearbyShuttleTargetsByteFar
+        key: Target
+        coordinatesKey: TargetCoordinates
+
+# Aggro wrappers for the rank-scaled variants.
+- type: htnCompound
+  id: ShooterShuttleByteSmallAggroCompound
+  branches:
+  - preconditions:
+    - !type:KeyExistsPrecondition
+      key: Aggroed
+    tasks:
+    - !type:HTNCompoundTask
+      task: AttackerShuttleByteSmallCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: ShooterShuttleByteCompound
+
+- type: htnCompound
+  id: ShooterShuttleByteLargeAggroCompound
+  branches:
+  - preconditions:
+    - !type:KeyExistsPrecondition
+      key: Aggroed
+    tasks:
+    - !type:HTNCompoundTask
+      task: AttackerShuttleByteLargeCompound
   - tasks:
     - !type:HTNCompoundTask
       task: ShooterShuttleByteCompound

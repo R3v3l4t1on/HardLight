@@ -45,4 +45,40 @@ public sealed partial class ShipAggroComponent : Component
     /// </summary>
     [DataField]
     public string BlackboardKey = "Aggroed";
+
+    /// <summary>
+    /// Distance from any player station grid below which this AI core
+    /// should disengage and steer away. While inside this range, aggro
+    /// is force-cleared (so the AI loses interest in the player) and the
+    /// HTN blackboard key <see cref="AvoidStationBlackboardKey"/> is set
+    /// to an <see cref="Robust.Shared.Map.EntityCoordinates"/> waypoint
+    /// just outside the avoidance border, pointing directly away from the
+    /// nearest station grid. Set to 0 to disable.
+    /// </summary>
+    [DataField]
+    public float AvoidStationRange = 0f;
+
+    /// <summary>
+    /// Extra distance added past <see cref="AvoidStationRange"/> when
+    /// computing the flee waypoint, so the AI commits to a target a bit
+    /// outside the no-go border instead of skimming it.
+    /// </summary>
+    [DataField]
+    public float AvoidStationBuffer = 500f;
+
+    /// <summary>
+    /// Blackboard key the flee waypoint is written to while inside the
+    /// station avoidance range.
+    /// </summary>
+    [DataField]
+    public string AvoidStationBlackboardKey = "AvoidStationCoordinates";
+
+    /// <summary>
+    /// Latest computed flee waypoint, mirrored onto the blackboard every
+    /// tick. <c>null</c> when the AI is outside the avoidance range.
+    /// Not serialized: this is recomputed each scan from current
+    /// positions.
+    /// </summary>
+    [ViewVariables]
+    public Robust.Shared.Map.EntityCoordinates? PendingAvoidStationCoordinates;
 }
